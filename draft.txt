@@ -119,7 +119,31 @@
 
 = Expressions =
 
- 
+ == Switch ==
+
+  A switch statement starts when the first case is encountered and does not require a separate 'begin' statement. Cases are TIERS and a case ends when the next one starts, the entire block is closed with '100% accurate'.
+
+  >implying foo isn't 5
+  foo is 5 TIER: inane I'm not sure on 'is' versus '=', but I'll use 'is' in this example
+      >mfw right
+  foo is 2 TIER:
+      >mfw you're wrong
+  100% accurate
+
+  Nested switch statements can be made by starting the new switch block with 'furthermore,' (a more memed-out version of this would be better) and are again ended with '100% accurate' like this:
+
+  >implying foo isn't 5
+  foo is 5 TIER:
+      >mfw right
+      furthermore,
+      foo < 4 TIER:
+          >mfw but that's where you're wrong
+      foor > 4 TIER:
+        >mfw OP is a reasonable person
+      100% accurate
+  foo is 2 TIER:
+      >mfw you're wrong
+  100% accurate 
 
 = Functions =
 
