@@ -16,7 +16,7 @@
  Expression: An evaluatable snippet which consists of further expressions and produces a single result
  Block: An evaluatable snippet which consists of unconnected statements and is itself a statement
  Comment: A portion of code that is ignored completely and does not influence execution in any way
- Name: A variable name which may not be any of the reserved symbols and must start with a non-numeral
+ Name: A variable name which may not be any of the reserved symbols and must start with a non-decimal (see below)
  Newline: Any non-empty combination of \r and \n that may be surrounded by any amount of whitespace
  Variable: A construct that is given a value, name, type and scope; whose value may be reassigned
  Free variable: A variable for which the scope is unclear or undefined
@@ -29,8 +29,11 @@
 = Style and Format =
 
  Intrinsic statements are separated by a terminator which is a newline as described above. All source files are
- explicitly UTF-8, and all names may include special UTF symbols provided they are not in the group of whitespace
+ explicitly UTF-8, and all names may include special UTF runes provided they are not in the group of whitespace
  or control characters.
+
+ Names may NOT start with a digit from 0 to 9, a minus sign (‘-’), a period (‘.’) or a quote (‘"’), in addition to
+ the forbidden runes described in the previous paragraph. The name regex looks like this: /[^-."\d\s\cA-\cZ][^\s\cA-\cZ]*/
 
 = Comments =
 
