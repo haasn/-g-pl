@@ -100,7 +100,7 @@
  Some types may be represented directly using a special literal form, represented here using a regular expression:
 
  Integer: /-?\d+/
- Float: /-?\d+\.\d+/
+ Float: /-?\d?\.\d+/
  String: /"(\\"|[^\\"]|\\\\)+"/
  Boolean: /true|false|on|off|yes|no/
 
