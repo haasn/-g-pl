@@ -92,7 +92,11 @@
  == Function{...} ==
 
   These represent untyped functions that can be called. The “...” represents a listing of arguments separated by
-  whitespace. A function type could look like “function{x y}” or “function{bar}”.
+  whitespace. A function type could look like “function{x y}” or “function{bar}”. A function has one distinction
+  that makes it special: It carries with it another scope, a so-called “execution scope”. This information is
+  implicit and implementation-bound, there is no way to retrieve or modify this from within the language itself.
+
+  See the functions section for more information.
 
  == Forever Alone ==
 
@@ -123,7 +127,7 @@
 
 = Expressions =
 
-
+ Expressions are evaluatable portions of code which produce a value and a type.
 
 = Functions =
 
@@ -144,9 +148,22 @@
     baz`
  represent the same function call. Function calls and creations are expressions.
 
- What happens when you call a function is that a new scope is created /inside/ the variable containing the function's
- containing scope, with each of the named parameters being created with the type and value of the parameter's
- expression.
+ Functions, as mentioned above, carry with them a special scope. When a function is created, their scope is assigned
+ the current scope in which they were created. If this function gets passed elsewhere, that scope gets passed along with
+ them.
+
+ What happens when you call a function is that a new scope is created /inside/ the function's execution scope,
+ with each of the named parameters being created there with the type and value of the parameter's expression.
+
+ If you result an intermediate function directly, eg. `>>function{x} gb2 >+ x x 5`, what happens is that the intermediate
+ value of the first expression (“>function{x} gb2 >+ x x”), which carries with it a special scope (that is not normally
+ known for expressions but was assigned during its creation) is executed immediately as detailed above. This means that
+ a new scope is created inside the function's execution scope (which is the current), with the Integer “x” set to “5”.
+
+ “gb2 >+ x x” is then evaluated as normal inside that scope, which means that the closest bound ‘x’, in this case the
+ one inside its own scope, gets added to itself, and the result of that expression gets returned via the “gb2”.
+
+ So writing `>mfw >>function{x} gb2 >+ x x 5` will output a “10”.
 
  Attempting to call a variable that is not a function (eg. an integer or a string) will result in a fatal error.
 
