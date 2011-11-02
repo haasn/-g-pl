@@ -24,6 +24,7 @@
  Scope: A collection of variables assigned to a statement
  Fatal error: An error message that, in addition to alerting the user, immediately terminates the entire program
  Type: Any of four intrinsic data types, see Types section below
+ Condition: Any expression which gives a result of type boolean
 
 = Style and Format =
 
@@ -119,31 +120,7 @@
 
 = Expressions =
 
- == Switch ==
 
-  A switch statement starts when the first case is encountered and does not require a separate 'begin' statement. Cases are TIERS and a case ends when the next one starts, the entire block is closed with '100% accurate'.
-
-  >implying foo isn't 5
-  foo is 5 TIER: inane I'm not sure on 'is' versus '=', but I'll use 'is' in this example
-      >mfw right
-  foo is 2 TIER:
-      >mfw you're wrong
-  100% accurate
-
-  Nested switch statements can be made by starting the new switch block with 'furthermore,' (a more memed-out version of this would be better) and are again ended with '100% accurate' like this:
-
-  >implying foo isn't 5
-  foo is 5 TIER:
-      >mfw right
-      furthermore,
-      foo < 4 TIER:
-          >mfw but that's where you're wrong
-      foor > 4 TIER:
-        >mfw OP is a reasonable person
-      100% accurate
-  foo is 2 TIER:
-      >mfw you're wrong
-  100% accurate 
 
 = Functions =
 
@@ -177,3 +154,31 @@
  and, when used inside the execution of a function, evaluates [value] and returns its value + type to the parent
  context (see the Expressions section on the rules governing intermediate values). If used without a [value], it
  returns a value of type forever alone.
+ 
+= TIER statement =
+
+ The “TIER” statement has the form:
+
+ `[cond1] TIER:
+      [res1]
+  [cond2] TIER:
+      [res2]
+  100% accurate` (condn :: Condition; resn :: Statement)
+  
+ and its effect is to evaluate one and only one of the resulting [resn] blocks, depending on which [condn] first
+ returns a result of “true”, as processed in a top-down order.
+
+ Nested TIER statements can be indicated with the special keyword “furthermore”, for example:
+
+ `>implying foo isn't 5
+  foo is 5 TIER:
+      >mfw "right"
+      furthermore,
+      foo below 4 TIER:
+          >mfw "but that's where you're wrong"
+      foo above 4 TIER:
+        >mfw "OP is a reasonable person"
+      100% accurate
+  foo is 2 TIER:
+      >mfw "you're wrong"
+  100% accurate`
