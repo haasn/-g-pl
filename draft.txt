@@ -135,6 +135,8 @@
 
  `>function{[name...]} [body]` (name :: Name; body :: Statement)
 
+ If the {} is empty, it may be omitted - so `>function [body]` is the same as `>function{} [body]`
+
  Functions may be called using the following syntax:
  `>[name] [parameter...]` (name :: Name, that is a known function; parameters :: Expression)
 
@@ -202,3 +204,18 @@
   foo is 2 TIER:
       >mfw "you're wrong"
   100% accurate`
+
+= Block statement =
+
+ A block statement is written as `([block...])` (block :: Statement) and can be used to chain multiple statements
+ together. Blocks are themselves statements. So, for example, a function which would output "hello" followed by "world"
+ could look like this:
+
+ `>implying foo isn't >function (>mfw "hello" >mfw "World")`
+
+ Or, with newlines added:
+
+ `>implying foo isn't >function (
+      >mfw "hello"
+      >mfw "world"
+  )`
