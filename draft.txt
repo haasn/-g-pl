@@ -20,7 +20,7 @@
  Variable: A construct that is given a value, name, type and scope; whose value may be reassigned
  Free variable: A variable for which the scope is unclear or undefined
  Uninitialized variable: A variable for which the value and type are unclear or undefined
- Scope: A collection of variables assigned to a statement
+ Scope: A collection of variables assigned to a certain expression
  Fatal error: An error message that, in addition to alerting the user, immediately terminates the entire program
  Type: Any of four intrinsic data types, see Types section below
  Condition: Any expression which gives a result of type boolean
@@ -170,7 +170,37 @@
  So writing `>mfw >>function(x) gb2 >+ x x 5` will output a “10”.
 
  Attempting to call a variable that is not a function (eg. an integer or a string) will result in a fatal error.
- 
+
+ == Built-in functions ==
+
+  === mfw(value) ===
+
+   This built-in will print the formatted value of “value” to stdout. Works on every type! >string is not needed
+
+  === yfw ===
+
+   This built-in will read in a line of text from stdin and return it as a string.
+
+  === float(value) ===
+
+   This built-in will parse the contents of “value” to a float if possible (fatal error otherwise). Works on strings,
+   floats and ints.
+
+  === string(value) ===
+
+   This built-in will turn the value into a string representation. Works on every type!
+
+  === int(value) ===
+
+   This built-in will turn the value into an integer type. Works on strings, floats and ints. If used on a float,
+   rounding occurs.
+
+  === bool(value) ===
+
+   This built-in will turn the value into a boolean type. Works only on strings! Please do not attempt using numbers
+   as truth values. (If this function supported numbers, 0 would be ambiguous between “true” and “false” depending
+   on context)
+
 = TIER expression =
 
  The “TIER” expression has the form:
@@ -208,8 +238,8 @@
       >mfw "world"
   }`
 
- By default, they return a “Forever Alone”, unless they include a “gb2” expression somewhere, in which case the blocks
- return execution at that point.
+ By default, they return the value/type of the last expression, unless they include a “gb2” expression somewhere,
+ in which case the blocks return execution at that point.
 
  An example of this usage could be:
  `>mfw {
@@ -218,6 +248,10 @@
   }`
 
  This would print out "hello" followed by "world".
+
+ Note that in this case, the “gb2” is unnecessary, since it's already the last expression. Having simply written:
+ `>mfw { >mfw "hello" "world" }` would have sufficed, since a string literal on its own is an expression and blocks
+ without a “gb2” return the result of the last expression.
 
  == gb2 expression ==
 
