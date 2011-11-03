@@ -12,9 +12,8 @@
 
 = Terminology =
 
- Statement: Top level construct with special, well-defined behavior. May consist of further statements
- Expression: An evaluatable snippet which consists of further expressions and produces a single result
- Block: An evaluatable snippet which consists of unconnected statements and is itself a statement
+ Expression: An evaluatable snippet which produces a single result (value + type)
+ Block: An expression which consists of further expressions, executed in order
  Comment: A portion of code that is ignored completely and does not influence execution in any way
  Name: A variable name which may not be any of the reserved symbols and must start with a non-decimal (see below)
  Newline: Any non-empty combination of \r and \n that may be surrounded by any amount of whitespace
@@ -28,7 +27,7 @@
 
 = Style and Format =
 
- Intrinsic statements are separated by a terminator which is a newline as described above. All source files are
+ Intrinsic expressions are separated by a terminator which is a newline as described above. All source files are
  explicitly UTF-8, and all names may include special UTF runes provided they are not in the group of whitespace
  or control characters.
 
@@ -48,7 +47,7 @@
 = Variables =
 
  All variables must be bound at all times, any usage of a free variable will result in a fatal error.
- A variable can be introduced into the current scope with an “implying” statement, which has several possible
+ A variable can be introduced into the current scope with an “implying” expression, which has several possible
  forms that are governed by special rules:
 
  `>implying [name] isn't [value]` (name :: Name; value :: Expression)
@@ -63,6 +62,9 @@
  This distinguishes itself from the previous form (with “isn't” instead of “wasn't”) in that this form recursively
  traverses the current scope outwards until it finds the first occurence of a variable named [name], then
  changes the value of that variable. In case no such variable is found, a fatal error shall occur.
+
+ The result of an “>implying” expressions will be the value and type of the assigned variable, or in the case
+ of an uninitialized creation, a “forever alone”.
 
 = Types =
 
@@ -127,15 +129,13 @@
 
 = Expressions =
 
- Expressions are evaluatable portions of code which produce a value and a type. All expressions are statements,
- but the reverse is not true. The distinction is that a statement doesn't have to return anything, but an expression
- must always.
+ Expressions are evaluatable portions of code which produce a value and a type.
 
 = Functions =
 
  Functions may be created using the following syntax:
 
- `>function([name...]) [body]` (name :: Name; body :: Statement)
+ `>function([name...]) [body]` (name :: Name; body :: Expression)
 
  If the () is empty, it may be omitted - so `>function [body]` is the same as `>function() [body]`
 
@@ -170,46 +170,33 @@
  So writing `>mfw >>function(x) gb2 >+ x x 5` will output a “10”.
 
  Attempting to call a variable that is not a function (eg. an integer or a string) will result in a fatal error.
-
-= gb2 statement =
-
- The “gb2” statement has the form:
- `gb2 [value]` (value :: Expression)
- and, when used inside the execution of a function, evaluates [value] and returns its value + type to the parent
- context (see the Expressions section on the rules governing intermediate values). If used without a [value], it
- returns a value of type forever alone.
  
-= TIER statement =
+= TIER expression =
 
- The “TIER” statement has the form:
+ The “TIER” expression has the form:
 
- `[cond1] TIER:
-      [res1]
-  [cond2] TIER:
-      [res2]
-  100% accurate` (condn :: Condition; resn :: Statement)
+ `[cond1] TIER: [res1]
+  [cond2] TIER: [res2]` (condn :: Condition; resn :: Expression)
   
  and its effect is to evaluate one and only one of the resulting [resn] blocks, depending on which [condn] first
  returns a result of “true”, as processed in a top-down order.
 
- Nested TIER statements can be indicated with the special keyword “furthermore”, for example:
+ Examples:
 
  `>implying foo isn't 5
-  foo is 5 TIER:
+  foo is 5 TIER: {
       >mfw "right"
-      furthermore,
-      foo below 4 TIER:
-          >mfw "but that's where you're wrong"
-      foo above 4 TIER:
-        >mfw "OP is a reasonable person"
-      100% accurate
+      foo below 4 TIER: >mfw "but that's where you're wrong"
+      foo above 4 TIER: >mfw "OP is a reasonable person"
+  }
   foo is 2 TIER:
-      >mfw "you're wrong"
-  100% accurate`
+      >mfw "you're wrong"`
+ 
+ TIERs need no terminator, as they hold only one expression. If you wish to chain multiple, a block may be used.
 
 = Block expression =
 
- A block expression is written as `{[block...]}` (block :: Statement) and can be used to chain multiple statements
+ A block expression is written as `{[block...]}` (block :: Expression) and can be used to chain multiple expressions
  together. So, for example, a function which would output "hello" followed by "world" could look like this:
 
  `>implying foo isn't >function {>mfw "hello" >mfw "World"}`
@@ -221,8 +208,8 @@
       >mfw "world"
   }`
 
- Blocks are themselves expressions, not statements! By default, they return a “Forever Alone”, unless they include
- a “gb2” statement somewhere, in which case the blocks return execution at that point.
+ By default, they return a “Forever Alone”, unless they include a “gb2” expression somewhere, in which case the blocks
+ return execution at that point.
 
  An example of this usage could be:
  `>mfw {
@@ -231,3 +218,10 @@
   }`
 
  This would print out "hello" followed by "world".
+
+ == gb2 expression ==
+
+  The “gb2” expression has the form:
+  `gb2 [value]` (value :: Expression)
+  and, when used inside the execution of a block, evaluates [value] and returns it. If used without a [value], it
+  returns a value of type forever alone.
