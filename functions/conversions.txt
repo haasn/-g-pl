@@ -1,0 +1,19 @@
+= float(value) =
+
+ This built-in will parse the contents of “value” to a float if possible (fatal error otherwise). Works on strings,
+ floats and ints.
+
+= string(value) =
+
+ This built-in will turn the value into a string representation. Works on every type!
+
+= int(value) =
+
+ This built-in will turn the value into an integer type. Works on strings, floats and ints. If used on a float,
+ rounding occurs.
+
+= bool(value) =
+
+ This built-in will turn the value into a boolean type. Works only on strings! Please do not attempt using numbers
+ as truth values. (If this function supported numbers, 0 would be ambiguous between “true” and “false” depending
+ on context)

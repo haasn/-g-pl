@@ -1,0 +1,7 @@
+= mfw(value) =
+
+ This built-in will print the formatted value of “value” to stdout. Works on every type! >string is not needed
+
+= yfw =
+
+ This built-in will read in a line of text from stdin and return it as a string.

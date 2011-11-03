@@ -1,0 +1,35 @@
+A block expression is written as `{[block...]}` (block :: Expression) and can be used to chain multiple expressions
+together. So, for example, a function which would output "hello" followed by "world" could look like this:
+
+`>implying foo isn't >function {>mfw "hello" >mfw "World"}`
+
+Or, with newlines added:
+
+`>implying foo isn't >function {
+     >mfw "hello"
+     >mfw "world"
+ }`
+
+By default, they return the value/type of the last expression, unless they include a “gb2” expression somewhere,
+in which case the blocks return execution at that point.
+
+An example of this usage could be:
+`>mfw {
+     >mfw "hello"
+     gb2 "world"
+ }`
+
+This would print out "hello" followed by "world".
+
+Note that in this case, the “gb2” is unnecessary, since it's already the last expression. Having simply written:
+`>mfw { >mfw "hello" "world" }` would have sufficed, since a string literal on its own is an expression and blocks
+without a “gb2” return the result of the last expression.
+
+= gb2 expression =
+
+ The “gb2” expression has the form:
+ `gb2 [value]` (value :: Expression)
+ and, when used inside the execution of a block, evaluates [value] and returns it. If used without a [value], it
+ returns a value of type forever alone.
+
+ The special form `gb2 /b/` will immediately terminate the entire program.

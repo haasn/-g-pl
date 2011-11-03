@@ -1,0 +1,19 @@
+All variables must be bound at all times, any usage of a free variable will result in a fatal error.
+A variable can be introduced into the current scope with an “implying” expression, which has several possible
+forms that are governed by special rules:
+
+`>implying [name] isn't [value]` (name :: Name; value :: Expression)
+This form will create a variable named [name] in the current scope, set its value to [value], set its type
+depending on the nature of [value] as governed by the rules in the Expressions section
+
+`>implying <name>` (name :: Name)
+This form will create an unitialized variable named [name] in the current scope.
+
+A variable may be assigned to using the following form:
+`>implying [name] wasn't [value]` (name :: Name; value :: Expression)
+This distinguishes itself from the previous form (with “isn't” instead of “wasn't”) in that this form recursively
+traverses the current scope outwards until it finds the first occurence of a variable named [name], then
+changes the value of that variable. In case no such variable is found, a fatal error shall occur.
+
+The result of an “>implying” expressions will be the value and type of the assigned variable, or in the case
+of an uninitialized creation, a “forever alone”.

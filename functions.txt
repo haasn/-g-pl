@@ -1,0 +1,37 @@
+Functions may be created using the following syntax:
+
+`>function([name...]) [body]` (name :: Name; body :: Expression)
+
+If the () is empty, it may be omitted - so `>function [body]` is the same as `>function() [body]`
+
+Functions may be called using the following syntax:
+`>[name] [parameter...]` (name :: Name, that is a known function; parameters :: Expression)
+
+A function call's parameters, as well as the name and the first parameter, may be separated by any sort of
+whitespace including tabs, newlines and spaces. They are only considered to be terminated when the function's
+required number of parameters have been given. So, for example, if “foo” takes two parameters and “bar” takes one,
+`>foo >bar bat baz`
+ and
+`>foo
+   >bar bat
+   baz`
+represent the same function call. Function calls and creations are expressions.
+
+Functions, as mentioned above, carry with them a special scope. When a function is created, their scope is assigned
+the current scope in which they were created. If this function gets passed elsewhere, that scope gets passed along with
+them.
+
+What happens when you call a function is that a new scope is created /inside/ the function's execution scope,
+with each of the named parameters being created there with the type and value of the parameter's expression.
+
+If you result an intermediate function directly, eg. `>>function(x) gb2 >+ x x 5`, what happens is that the intermediate
+value of the first expression (“>function(x) gb2 >+ x x”), which carries with it a special scope (that is not normally
+known for expressions but was assigned during its creation) is executed immediately as detailed above. This means that
+a new scope is created inside the function's execution scope (which is the current), with the Integer “x” set to “5”.
+
+“gb2 >+ x x” is then evaluated as normal inside that scope, which means that the closest bound ‘x’, in this case the
+one inside its own scope, gets added to itself, and the result of that expression gets returned via the “gb2”.
+
+So writing `>mfw >>function(x) gb2 >+ x x 5` will output a “10”.
+
+Attempting to call a variable that is not a function (eg. an integer or a string) will result in a fatal error.

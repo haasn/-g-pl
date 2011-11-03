@@ -1,0 +1,9 @@
+Any and all of the names used here serve merely as placeholder and may or may not indicate their final form in
+whole or in part. Where no suitable suggestion was found, a descriptive placeholder was inserted for brevity.
+
+Where source code is introduced into this article, it is surrounded by a pair of backquotes (‘`’)
+Placeholders inside source code are surround by square brackets (‘[’ and ‘]’). A source code snippet containing
+placeholders may be followed by a section describing the nature of placeholders in the form “(name :: kind)”
+where name is the name of a placeholder, and kind describes what that placeholder may be (see Terminology section).
+If a placeholder is not mentioned, it is assumed to be anything. Multiple placeholder descriptions may be separated
+by a semicolon (‘;’).

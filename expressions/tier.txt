@@ -1,0 +1,45 @@
+The “TIER” expression has the form:
+
+`[cond1] TIER: [res1]
+ [cond2] TIER: [res2]
+ ...
+ 100% accurate` (condn :: Condition; resn :: Expression)
+  
+and its effect is to evaluate one and only one of the resulting [resn] blocks, depending on which [condn] first
+returns a result of “true”, as processed in a top-down order. The condition and expression may be separated by
+newlines and whitespace for clarity.
+
+A special TIER, named “SHIT TIER”, will always execute if reached.
+
+Examples:
+
+`>implying foo isn't 5
+ foo is 5 TIER: {
+     >mfw "right"
+     foo below 4 TIER: >mfw "but that's where you're wrong"
+     foo above 4 TIER: >mfw "OP is a reasonable person"
+ }
+ foo is 2 TIER:
+     >mfw "you're wrong"
+ 100% accurate`
+
+A TIER may be used as a regular conditional:
+
+`>implying foo isn't 5
+ foo is 5 TIER: >mfw "foo is five"
+ SHIT TIER: >mfw "foo isn't five"
+ 100% accurate`
+
+Or, for more clarity:
+
+`>implying foo isn't 5
+
+ foo is 5 TIER: {
+     >mfw "foo is five"
+ }
+ SHIT TIER: {
+     >mfw "foo isn't five"
+ }
+ 100% accurate`
+
+ But the blocks here are unnecessary.

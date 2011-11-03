@@ -1,0 +1,12 @@
+Sequenced expressions are separated by whitespace (with or without newlines).  All source files are explicitly
+UTF-8, and all names may include special UTF runes provided they are not in the group of whitespace or control
+characters.
+
+Names may NOT start with a digit from 0 to 9, a minus sign (‘-’), a period (‘.’) or a quote (‘"’), in addition to
+the forbidden runes described in the previous paragraph.
+
+The name regex looks like this: /[^-."\d\s\cA-\cZ][^\s\cA-\cZ]*/
+
+Top level expressions may *only* be >implying expressions, any and all execution will have to be inside an OP
+function. When a file is interpreted, all of its >implications are first processed from top to bottom, and then
+the OP function is called if it exists.

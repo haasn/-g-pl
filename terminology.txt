@@ -1,0 +1,35 @@
+Expression:
+  An evaluatable snippet which produces a single result (value + type)
+
+Block:
+  An expression which consists of further expressions, executed in order
+
+Comment:
+  A portion of code that is ignored completely and does not influence execution in any way
+
+Name:
+  A variable name which may not be any of the reserved symbols and must start with a non-decimal (see below)
+
+Newline:
+  Any non-empty combination of \r and \n that may be surrounded by any amount of whitespace
+
+Variable:
+  A construct that is given a value, name, type and scope; whose value may be reassigned
+
+Free variable:
+  A variable for which the scope is unclear or undefined
+
+Uninitialized variable:
+  A variable for which the value and type are unclear or undefined
+
+Scope:
+  A collection of variables assigned to a certain expression
+
+Fatal error:
+  An error message that, in addition to alerting the user, immediately terminates the entire program
+
+Type:
+  Any of four intrinsic data types, see Types section below
+
+Condition:
+  Any expression which gives a result of type boolean

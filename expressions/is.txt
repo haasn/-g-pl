@@ -1,0 +1,7 @@
+The “is” expression has the form:
+ 
+`[exp1] is [exp2]` (expn: Expression)
+
+and evaluates two expressions for equality. Functions may not be compared. Floats and ints may be compared with
+eachother. Every other type may only be compared with itself. This expression always returns a result of type
+forever alone.

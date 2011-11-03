@@ -1,0 +1,58 @@
+﻿There are exactly six intrinsic data types: Integer, Float, Boolean, String, Function{...} and Forever Alone
+
+= Integer =
+
+ An integer is a member of ℤ, that is the set of all non-negative natural numbers ℕ⁰ plus the inversion of ℕ*.
+ Integers are formally required to be unlimited in magnitude (that is, potentially infinite), but for the sake
+ of convenience an implementation may restrict this to the maximal machine integer size on a given architecture.
+
+= Float =
+
+ A float is a floating point number as defined by IEEE 754. The special forms are “Infinity”, “-Infinity” and “NaN”.
+ These are taken to be the maximum available machine floating point precision available on a given architecture.
+
+= Boolean =
+
+ A boolean is a type with two possible states, “true” or “false”. These have two acceptable alternative forms:
+ “on” and “off” as well as “yes” and “no”. All of these are synonyms for the same notion and hold no difference.
+
+= String =
+
+ A string is a sequence of Unicode runes. There is no data type for a single rune, a string with length 1 is used
+ instead.
+
+= Function{...} =
+
+ These represent untyped functions that can be called. The “...” represents a listing of arguments separated by
+ whitespace. A function type could look like “function{x y}” or “function{bar}”. A function has one distinction
+ that makes it special: It carries with it another scope, a so-called “execution scope”. This information is
+ implicit and implementation-bound, there is no way to retrieve or modify this from within the language itself.
+
+ See the functions section for more information.
+
+= Forever Alone =
+
+ A forever alone type represents a type which has only one acceptable value: forever alone. A function may return
+ a forever alone to indicate the lack of a return value. The type forever alone and the value forever alone can be
+ interchanged freely, as they are inseparable.
+
+Some types may be represented directly using a special literal form, represented here using a regular expression:
+
+Integer: /-?\d+/
+Float: /-?\d*\.\d+/
+String: /"(\\"|[^\\"]|\\\\)+"/
+Boolean: /true|false|on|off|yes|no/
+Forever Alone: /forever alone/
+
+These are designed to be unambiguous, that is, there is no single input which matches more than one form. Type
+literals are expressions. Boolean and Forever Alone literals are case sensitive.
+
+= Type inference rules =
+
+ Any expression produces both a value and a type for that value. These types cannot be implicitly converted or
+ casted with one exception: An integer may freely be converted to a float if required. This is useful to, for
+ example, infer floating point precision. See the rules on Expressions to find out which expressions require
+ which types.
+
+ For general conversions, there exist built-in functions “floor”, “ceil” and “round” to convert a float into
+ an integer, and “float” to convert an integer into a float (and warn if a float is given).
