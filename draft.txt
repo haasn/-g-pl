@@ -113,7 +113,7 @@
 
  These are designed to be unambiguous, that is, there is no single input which matches more than one form. Type
  literals are expressions. The types which have no literals may not be literally created (but may be obtained via
- other means, for example a blank “gb2” and the “>function{...}” statement)
+ other means, for example a blank “gb2” and the “>function(...)” expression)
 
  == Type inference rules ==
 
@@ -127,15 +127,17 @@
 
 = Expressions =
 
- Expressions are evaluatable portions of code which produce a value and a type.
+ Expressions are evaluatable portions of code which produce a value and a type. All expressions are statements,
+ but the reverse is not true. The distinction is that a statement doesn't have to return anything, but an expression
+ must always.
 
 = Functions =
 
  Functions may be created using the following syntax:
 
- `>function{[name...]} [body]` (name :: Name; body :: Statement)
+ `>function([name...]) [body]` (name :: Name; body :: Statement)
 
- If the {} is empty, it may be omitted - so `>function [body]` is the same as `>function{} [body]`
+ If the () is empty, it may be omitted - so `>function [body]` is the same as `>function() [body]`
 
  Functions may be called using the following syntax:
  `>[name] [parameter...]` (name :: Name, that is a known function; parameters :: Expression)
@@ -157,15 +159,15 @@
  What happens when you call a function is that a new scope is created /inside/ the function's execution scope,
  with each of the named parameters being created there with the type and value of the parameter's expression.
 
- If you result an intermediate function directly, eg. `>>function{x} gb2 >+ x x 5`, what happens is that the intermediate
- value of the first expression (“>function{x} gb2 >+ x x”), which carries with it a special scope (that is not normally
+ If you result an intermediate function directly, eg. `>>function(x) gb2 >+ x x 5`, what happens is that the intermediate
+ value of the first expression (“>function(x) gb2 >+ x x”), which carries with it a special scope (that is not normally
  known for expressions but was assigned during its creation) is executed immediately as detailed above. This means that
  a new scope is created inside the function's execution scope (which is the current), with the Integer “x” set to “5”.
 
  “gb2 >+ x x” is then evaluated as normal inside that scope, which means that the closest bound ‘x’, in this case the
  one inside its own scope, gets added to itself, and the result of that expression gets returned via the “gb2”.
 
- So writing `>mfw >>function{x} gb2 >+ x x 5` will output a “10”.
+ So writing `>mfw >>function(x) gb2 >+ x x 5` will output a “10”.
 
  Attempting to call a variable that is not a function (eg. an integer or a string) will result in a fatal error.
 
@@ -205,17 +207,27 @@
       >mfw "you're wrong"
   100% accurate`
 
-= Block statement =
+= Block expression =
 
- A block statement is written as `([block...])` (block :: Statement) and can be used to chain multiple statements
- together. Blocks are themselves statements. So, for example, a function which would output "hello" followed by "world"
- could look like this:
+ A block expression is written as `{[block...]}` (block :: Statement) and can be used to chain multiple statements
+ together. So, for example, a function which would output "hello" followed by "world" could look like this:
 
- `>implying foo isn't >function (>mfw "hello" >mfw "World")`
+ `>implying foo isn't >function {>mfw "hello" >mfw "World"}`
 
  Or, with newlines added:
 
- `>implying foo isn't >function (
+ `>implying foo isn't >function {
       >mfw "hello"
       >mfw "world"
-  )`
+  }`
+
+ Blocks are themselves expressions, not statements! By default, they return a “Forever Alone”, unless they include
+ a “gb2” statement somewhere, in which case the blocks return execution at that point.
+
+ An example of this usage could be:
+ `>mfw {
+      >mfw "hello"
+      gb2 "world"
+  }`
+
+ This would print out "hello" followed by "world".
