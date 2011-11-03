@@ -201,15 +201,37 @@
    as truth values. (If this function supported numbers, 0 would be ambiguous between “true” and “false” depending
    on context)
 
+  === add(x, y) ===
+  === sub(x, y) ===
+  === mul(x, y) ===
+  === div(x, y) ===
+  === pow(x, y) ===
+
+   These built-ins will perform their respective mathematical operations. These work on any combination of float and
+   integers, with the exception of add(x, y), which works on strings as well.
+
+= is expression =
+
+ The “is” expression has the form:
+ 
+ `[exp1] is [exp2]` (expn: Expression)
+
+ and evaluates two expressions for equality. Functions may not be compared. Floats and ints may be compared with
+ eachother. Every other type may only be compared with itself. This expression always returns a result of type
+ forever alone.
+
 = TIER expression =
 
  The “TIER” expression has the form:
 
  `[cond1] TIER: [res1]
-  [cond2] TIER: [res2]` (condn :: Condition; resn :: Expression)
+  [cond2] TIER: [res2]
+  ...` (condn :: Condition; resn :: Expression)
   
  and its effect is to evaluate one and only one of the resulting [resn] blocks, depending on which [condn] first
  returns a result of “true”, as processed in a top-down order.
+
+ A special TIER, named “SHIT TIER”, will always execute if reached.
 
  Examples:
 
@@ -223,6 +245,12 @@
       >mfw "you're wrong"`
  
  TIERs need no terminator, as they hold only one expression. If you wish to chain multiple, a block may be used.
+
+ A TIER may be used as a regular conditional:
+
+ `>implying foo isn't 5
+  foo is 5 TIER: >mfw "foo is five"
+  SHIT TIER: >mfw "foo isn't five"`
 
 = Block expression =
 
