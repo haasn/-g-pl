@@ -2,6 +2,5 @@ Sequenced expressions are separated by whitespace (with or without newlines).  A
 UTF-8, and all names may include special UTF runes provided they are not in the group of whitespace or control
 characters.
 
-Top level expressions may *only* be >implying expressions, any and all execution will have to be inside an OP
-function. When a file is interpreted, all of its >implications are first processed from top to bottom, and then
-the OP function is called if it exists.
+Files behave like a large block without the { }, and the result of running a file is the result of the block,
+as per usual block result rules (all “gb2” and last-expression rules apply).
