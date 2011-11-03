@@ -1,0 +1,19 @@
+Names may NOT start with a digit from 0 to 9, a minus sign (‘-’), a period (‘.’) or a quote (‘"’), in addition to
+the forbidden runes described in the previous paragraph.
+
+The name regex looks like this: /[^-."\d\s\cA-\cZ][^\s\cA-\cZ]*/
+
+All names are case sensitive.
+
+= List of reserved names =
+
+ implying
+ function
+ SHIT
+ TIER
+ gb2
+ is
+ below
+ above
+ forever
+ alone
