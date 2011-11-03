@@ -1,25 +1,37 @@
 I'd like to interject
 	This file is an example of a g#/g++/-g-pl source file 
 	according to current specifications.
-	The contents of this file just evolved
-	with the thread yesterday, so I wanted
-	to have them on GitHub too.
 Linux
 
-inane Create two new string
->implying foo = "hello"
->implying bar = " world"
+>implying OP isn't >function {
+    
+    inane Create two new strings
+    >implying foo isn't "hello"
+    >implying bar isn't " world"
 
+    inane Concatenate them in hw
+    >implying hw isn't >add foo bar
 
-inane Concatenate them in hw
-inane Concatenation is not in the current draft, this
-inane should be updated when it is.
->implying hw
+    inane Output it
+    >mfw hw
 
-hw?
->foo
->bar
-pick two;
+    inane Ask for the user's name
+    >mfw "what's your name, faggot?"
+    >implying name isn't >yfw
 
-inane Output it
->mfw hw
+    inane Conditional
+    name is "nand" TIER:
+        >mfw "power level over 9000"
+    SHIT TIER:
+        >mfw "get out"
+    100% accurate
+    
+    inane Lambdas
+    >implying adder isn't >function(x) >function(y) >add x y
+    >implying addfive isn't >adder 5
+
+    >mfw >addfive 3 inane Will output 8
+
+    inane Terminates the program immediately, not needed here but included for illustrative purposes
+    gb2 /b/
+}
