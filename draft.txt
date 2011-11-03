@@ -110,10 +110,10 @@
  Float: /-?\d*\.\d+/
  String: /"(\\"|[^\\"]|\\\\)+"/
  Boolean: /true|false|on|off|yes|no/
+ Forever Alone: /forever alone/
 
  These are designed to be unambiguous, that is, there is no single input which matches more than one form. Type
- literals are expressions. The types which have no literals may not be literally created (but may be obtained via
- other means, for example a blank “gb2” and the “>function(...)” expression)
+ literals are expressions. Boolean and Forever Alone literals are case sensitive.
 
  == Type inference rules ==
 
