@@ -13,6 +13,8 @@ namespace GPL
         {
             return this;
         }
+
+        public abstract Value Copy();
     }
 
     public class String : Value
@@ -23,6 +25,11 @@ namespace GPL
         public String(string value)
         {
             this.Value = value;
+        }
+
+        public override Value Copy()
+        {
+            return new String(Value);
         }
     }
 
@@ -35,6 +42,11 @@ namespace GPL
         {
             this.Value = value;
         }
+
+        public override Value Copy()
+        {
+            return new Integer(Value);
+        }
     }
 
     public class Float : Value
@@ -46,6 +58,11 @@ namespace GPL
         {
             this.Value = value;
         }
+
+        public override Value Copy()
+        {
+            return new Float(Value);
+        }
     }
 
     public class Bool : Value
@@ -56,6 +73,11 @@ namespace GPL
         public Bool(bool value)
         {
             this.Value = value;
+        }
+
+        public override Value Copy()
+        {
+            return new Bool(Value);
         }
 
         public static Bool Parse(string val)
@@ -97,11 +119,17 @@ namespace GPL
         {
             return new Function(new Builtin(exp), Scope.Global, new List<string>(args));
         }
+
+        public override Value Copy()
+        {
+            return new Function(Body, Execution.Copy(), Names);
+        }
     }
 
     public class ForeverAlone : Value
     {
         public override GPLType Type { get { return GPLType.ForeverAlone; } }
         public ForeverAlone() { }
+        public override Value Copy() { return new ForeverAlone(); }
     }
 }

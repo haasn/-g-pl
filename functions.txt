@@ -14,9 +14,9 @@ calls and creations are expressions.
 A function expression is a regular expression with the exception of literals. This was introduced to solve some
 ambiguity issues during parsing.
 
-Functions, as mentioned above, carry with them a special scope. When a function is created, their scope is assigned
-the current scope in which they were created. If this function gets passed elsewhere, that scope gets passed along with
-them.
+Functions, as mentioned above, carry with them a special scope. When a function is created, their scope is copied
+from the current scope in which they were created. That is, they implement full closure logic. If this function
+gets passed elsewhere, that scope gets passed along with them.
 
 What happens when you call a function is that a new scope is created /inside/ the function's execution scope,
 with each of the named parameters being created there with the type and value of the parameter's expression, which

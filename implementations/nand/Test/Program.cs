@@ -46,6 +46,14 @@ namespace Test
 >print >not churchFalse;;
 >print >and churchTrue churchFalse;;
 
+>implying closure isn't 1
+>implying addone isn't >function(x) >add closure x;
+
+>implying closure isn't 2
+>implying addtwo isn't >function(x) >add closure x;
+
+>mfw >addone 3;;
+>mfw >addtwo 3;;
 ";
 
             IExpression p = GPLParser.ParseFile(test);

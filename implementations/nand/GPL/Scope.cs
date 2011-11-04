@@ -16,6 +16,16 @@ namespace GPL
             this.Variables = new Dictionary<string, Value>();
         }
 
+        public Scope Copy()
+        {
+            Scope cp = new Scope(Parent);
+
+            foreach (var kvp in Variables)
+                cp.Variables.Add(kvp.Key, kvp.Value.Copy());
+
+            return cp;
+        }
+
         public Value Find(string name, Value newval = null)
         {
             if (Variables.ContainsKey(name))

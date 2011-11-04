@@ -18,7 +18,7 @@ namespace GPL
 
         public Value Evaluate(Scope scope)
         {
-            return new Function(Body, scope, Params);
+            return new Function(Body, scope.Copy(), Params);
         }
     }
 
