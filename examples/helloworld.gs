@@ -8,27 +8,27 @@ inane Create two new strings
 >implying bar isn't " world"
 
 inane Concatenate them in hw
->implying hw isn't >add foo bar
+>implying hw isn't >add foo bar;
 
 inane Output it
->mfw hw
+>mfw hw;
 
 inane Ask for the user's name
->mfw "what's your name, faggot?"
->implying name isn't >yfw
+>mfw "what's your name, faggot?";
+>implying name isn't >yfw;
 
 inane Conditional
 name is "nand" TIER:
-    >mfw "power level over 9000"
+    >mfw "power level over 9000";
 SHIT TIER:
-    >mfw "get out"
+    >mfw "get out";
 100% accurate
 
 inane Lambdas
->implying adder isn't >function(x) >function(y) >add x y
->implying addfive isn't >adder 5
+>implying adder isn't >function(x) >function(y) >add x y;
+>implying addfive isn't >adder 5;
 
->mfw >addfive 3 inane Will output 8
+>mfw >addfive 3;; inane Will output 8
 
 inane Terminates the program, not explicitly needed but this ensures we have no return type
 gb2 /b/

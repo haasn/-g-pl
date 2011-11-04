@@ -17,7 +17,7 @@ digit = ? digits from 0 to 9 ? ;
 bool literal = "true" | "false" | "on" | "off" | "yes" | "no" ;
 
 name = name start , { name body }
-name start = ? any char except - > . " { } digits whitespace or control characters ? ;
+name start = ? any char except - > . " { } , ; digits whitespace or control characters ? ;
 name body = name start | digit | "-" ;
 
 implication = declaration | creation | assignment ;
@@ -27,7 +27,7 @@ assignment = declaration , " wasn't " , expression ;
 
 function creation = ">function" , function names , " " , expression ;
 function names = "" | "(" , { name } , ")" ;
-function application = ">" , expression , { " " , expression } ;
+function application = ">" , expression , { " " , expression } , ";" ;
 
 block = "{" , block contents , "}" ;
 block contents = { [white] , block expression , [white] } ;
