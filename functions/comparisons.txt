@@ -1,0 +1,8 @@
+= is(a, b) =
+
+ This does a comparison. The only cross-type comparisons that are allowed are float and integer, always
+ return false. Commparisons between functions always return false.
+
+= smaller(a, b) =
+
+ Works only on integers and floats (the two may be compared). Returns true if a < b, false otherwise.
