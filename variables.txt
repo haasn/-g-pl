@@ -7,7 +7,7 @@ This form will create a variable named [name] in the current scope, set its valu
 depending on the nature of [value] as governed by the rules in the Expressions section
 
 `>implying <name>` (name :: Name)
-This form will create an unitialized variable named [name] in the current scope.
+This form will create a variable named [name] in the current scope and sets its value/type to forever alone.
 
 A variable may be assigned to using the following form:
 `>implying [name] wasn't [value]` (name :: Name; value :: Expression)

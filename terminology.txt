@@ -19,9 +19,6 @@ Variable:
 Free variable:
   A variable for which the scope is unclear or undefined
 
-Uninitialized variable:
-  A variable for which the value and type are unclear or undefined
-
 Scope:
   A collection of variables assigned to a certain expression
 

@@ -11,9 +11,6 @@ All names are case sensitive.
  SHIT
  TIER
  gb2
- is
- below
- above
  forever
  alone
  true

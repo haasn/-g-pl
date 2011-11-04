@@ -39,6 +39,8 @@
   <ItemGroup>
     <Compile Include="Block.cs" />
     <Compile Include="Expression.cs" />
+    <Compile Include="Implication.cs" />
+    <Compile Include="Name.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Scope.cs" />
     <Compile Include="Type.cs" />

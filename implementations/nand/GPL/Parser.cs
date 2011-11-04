@@ -21,9 +21,10 @@ namespace GPL
         static Parser<char> nameStart = Parse.CharExcept(c => "->.\"{}".Contains(c) || Char.IsControl(c) ||
                                                               Char.IsDigit(c) || Char.IsWhiteSpace(c), "name chars");
 
-        static Parser<Name> Name = from start in nameStart
-                                   from rest in nameStart.Or(Parse.Digit).Or(Parse.Char('-')).Many().Text()
-                                   select new Name(start + rest);
+        static Parser<Name> NameParser = from start in nameStart
+                                         from rest in nameStart.Or(Parse.Digit).Or(Parse.Char('-')).Many().Text()
+                                         where !Name.Reserved.Contains(start + rest)
+                                         select new Name(start + rest);
 
         // Literals
         static Parser<ForeverAlone> ForeverAloneLiteral = from _ in Parse.String("forever alone")
@@ -63,8 +64,27 @@ namespace GPL
                                                      from trail in space
                                                      select body;
 
+        // Implications
+        static Parser<Implication> Declaration = from lead in Parse.String(">implying ")
+                                                 from name in NameParser
+                                                 select new Implication(name.Identifier);
+
+        static Parser<ImplicationIsnt> Creation = from lead in Parse.String(">implying ")
+                                                  from name in NameParser
+                                                  from isnt in Parse.String(" isn't ")
+                                                  from val in Expression
+                                                  select new ImplicationIsnt(name.Identifier, val);
+
+        static Parser<ImplicationWasnt> Assignment = from lead in Parse.String(">implying ")
+                                                     from name in NameParser
+                                                     from wasnt in Parse.String(" wasn't ")
+                                                     from val in Expression
+                                                     select new ImplicationWasnt(name.Identifier, val);
+
+        static Parser<Implication> ImplicationParser = Creation.Or<Implication>(Assignment).Or(Declaration);
+
         // Expressions
-        static Parser<IExpression> Expression = Literal.Or<IExpression>(Name).Or(BlockParser);
+        static Parser<IExpression> Expression = Literal.Or<IExpression>(NameParser).Or(BlockParser).Or(ImplicationParser);
 
         // Entire source file
         static Parser<Block> SourceFile = from be in BlockExpression.Many().End()
