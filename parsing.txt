@@ -6,6 +6,7 @@ whitespace = { ? all white space including newlines ? }
 
 limited expression = literal | function application | function creation | block | implication | name ;
 full expression = tier list | limited expression ;
+function expression = full expression - literal ;
 expression = [ whitespace ] , full expression , [ white space] ;
 
 literal = string literal | integer literal | float literal | bool literal | "forever alone" ;
@@ -27,7 +28,7 @@ assignment = declaration , "wasn't" , expression ;
 
 function creation = ">function" , function names , expression ;
 function names = "" | "(" , { name } , ")" ;
-function application = ">" , expression , { expression } , ";" ;
+function application = ">" , function expression , { expression } , ";" ;
 
 block = "{" , block contents , "}" ;
 block contents = { [white] , block expression , [white] } ;

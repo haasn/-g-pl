@@ -5,11 +5,14 @@ Functions may be created using the following syntax:
 If the () is empty, it may be omitted - so `>function [body]` is the same as `>function() [body]`
 
 Functions may be called using the following syntax:
-`>[name] [parameter...];` (name :: Name, that is a known function; parameters :: Expression)
+`>[name] [parameter...];` (name :: Function Expression; parameters :: Expression)
 
 A function call's parameters, as well as the name and the first parameter, may be separated by any sort of
 whitespace including tabs, newlines and spaces. They are explicitly terminated by a semicolon. Function
 calls and creations are expressions.
+
+A function expression is a regular expression with the exception of literals. This was introduced to solve some
+ambiguity issues during parsing.
 
 Functions, as mentioned above, carry with them a special scope. When a function is created, their scope is assigned
 the current scope in which they were created. If this function gets passed elsewhere, that scope gets passed along with

@@ -86,7 +86,7 @@ namespace GPL
 
         // Functions
         static Parser<FunctionCall> FunctionApplication = from lead in Parse.Char('>')
-                                                          from func in Expression
+                                                          from func in expfun
                                                           from args in Expression.Many()
                                                           from stop in Parse.Char(';')
                                                           select new FunctionCall(func, args);
@@ -110,6 +110,7 @@ namespace GPL
 
         // Limited expression: Everything but tier lists
         static Parser<IExpression> explim = Literal.Or<IExpression>(FunctionParser).Or<IExpression>(BlockParser).Or(ImplicationParser).Or(Variable).Token();
+        static Parser<IExpression> expfun = FunctionParser.Or<IExpression>(BlockParser).Or(ImplicationParser).Or(Variable).Token();
 
         // TIER lists
         static Parser<Tuple<IExpression, IExpression>> Tier = from cond in explim
