@@ -1,0 +1,37 @@
+The first step in parsing a source file is to sanitize it, which involves the following steps:
+
+1. Any and all comments are removed from the source file entirely
+2. All consecutive white space (including newlines) that is not part of a string literal is shortened to
+   exactly one space.
+
+After that, the code is verified and tokenized using the following EBNF:
+
+expression = literal | name | implication | function creation | function application | block ;
+
+literal = string literal | integer literal | float literal | bool literal | "forever alone" ;
+string literal = '"' , { string character } , '"' ;
+string character = ? all characters except \ and " ? | "\\" | '\"' ;
+integer literal = [ "-" ] , digit , { digit } ;
+float literal = [ "-" ] , { digit } , "." , digit , { digit } ;
+digit = ? digits from 0 to 9 ? ;
+bool literal = "true" | "false" | "on" | "off" | "yes" | "no" ;
+
+name = name start , { name body }
+name start = ? any char except - > . " digits whitespace or control characters ? ;
+name body = name start | digit | "-" ;
+
+implication = declaration | creation | assignment ;
+declaration = ">implying " , name ;
+creation = declaration , " isn't " , expression ;
+assignment = declaration , " wasn't " , expression ;
+
+function creation = ">function" , function names , " " , expression ;
+function names = "" | "(" , { name } , ")" ;
+function application = ">" , expression , { " " , expression } ;
+
+block = "{" , block contents , "}" ;
+block contents = { [white] , block expression , [white] } ;
+block expression = expression | gb2 ;
+gb2 = "gb2 " , expression ;
+
+source file = block contents ;
