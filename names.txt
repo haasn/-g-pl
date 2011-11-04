@@ -17,3 +17,9 @@ All names are case sensitive.
  above
  forever
  alone
+ true
+ false
+ yes
+ no
+ on
+ off
