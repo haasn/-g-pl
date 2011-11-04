@@ -35,7 +35,7 @@ namespace GPL
                                                           select new ForeverAlone();
 
         static Parser<Bool> BoolLiteral = from v in Parse.String("true").Or(Parse.String("false")).Or(Parse.String("on")).Or(
-                                                    Parse.String("off")).Or(Parse.String("yes")).Or(Parse.String("no")).Text()
+                                                    Parse.String("off")).Or(Parse.String("yes")).Or(Parse.String("no")).Or(Parse.String("SHIT")).Text()
                                           select Bool.Parse(v);
 
         static Parser<String> StringLiteral = from open in Parse.Char('"')
@@ -109,8 +109,21 @@ namespace GPL
 
         static Parser<IExpression> FunctionParser = FunctionApplication.Or<IExpression>(FunctionCreation);
 
+        // Limited expression: Everything but tier lists
+        static Parser<IExpression> explim = Literal.Or<IExpression>(FunctionParser).Or<IExpression>(BlockParser).Or(ImplicationParser).Or(Variable);
+
+        // TIER lists
+        static Parser<Tuple<IExpression, IExpression>> Tier = from cond in explim.Token()
+                                                              from text in Parse.String("TIER:")
+                                                              from res in Expression
+                                                              select new Tuple<IExpression, IExpression>(cond, res);
+
+        static Parser<TierList> Tiers = from list in Tier.Token().AtLeastOnce()
+                                        from term in Parse.String("100% accurate")
+                                        select new TierList(list);
+
         // Expressions
-        static Parser<IExpression> Expression = Literal.Or<IExpression>(Variable).Or(BlockParser).Or(ImplicationParser).Or(FunctionParser).Token();
+        static Parser<IExpression> Expression = Tiers.Or(explim).Token();
 
         // Entire source file
         static Parser<Block> SourceFile = from be in Expression.Many().End()

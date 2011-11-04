@@ -41,11 +41,13 @@ Some types may be represented directly using a special literal form, represented
 Integer: /-?\d+/
 Float: /-?\d*\.\d+/
 String: /"(\\"|[^\\"]|\\\\)*"/
-Boolean: /true|false|on|off|yes|no/
+Boolean: /true|false|on|off|yes|no|SHIT/
 Forever Alone: /forever alone/
 
 These are designed to be unambiguous, that is, there is no single input which matches more than one form. Type
 literals are expressions. Boolean and Forever Alone literals are case sensitive.
+
+SHIT is an alias for “true”, to be used with the TIER conditionals.
 
 = Type inference rules =
 

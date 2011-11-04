@@ -65,6 +65,7 @@ namespace GPL
                 case "true":
                 case "on":
                 case "yes":
+                case "SHIT":
                     return new Bool(true);
 
                 case "false":

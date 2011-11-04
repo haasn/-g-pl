@@ -45,6 +45,7 @@
     <Compile Include="Name.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Scope.cs" />
+    <Compile Include="Tier.cs" />
     <Compile Include="Type.cs" />
     <Compile Include="Value.cs" />
   </ItemGroup>

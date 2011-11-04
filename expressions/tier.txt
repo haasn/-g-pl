@@ -9,7 +9,7 @@ and its effect is to evaluate one and only one of the resulting [resn] blocks, d
 returns a result of “true”, as processed in a top-down order. The condition and expression may be separated by
 newlines and whitespace for clarity.
 
-A special TIER, named “SHIT TIER”, will always execute if reached.
+A special TIER, named “SHIT TIER”, will always execute if reached. (See: Types section)
 
 Examples:
 
@@ -42,4 +42,7 @@ Or, for more clarity:
  }
  100% accurate`
 
- But the blocks here are unnecessary.
+But the blocks here are unnecessary.
+
+Due to ambiguity through mutual parsing recursion, a TIER's condition may not contain further TIERs. (The
+body, however, can)

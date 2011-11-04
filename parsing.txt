@@ -6,7 +6,8 @@ The first step in parsing a source file is to sanitize it, which involves the fo
 
 After that, the code is verified and tokenized using the following EBNF:
 
-expression = literal | name | implication | function creation | function application | block ;
+limited expression = literal | function application | function creation | block | implication | name ;
+expression = tier list | limited expression ;
 
 literal = string literal | integer literal | float literal | bool literal | "forever alone" ;
 string literal = '"' , { string character } , '"' ;
@@ -33,5 +34,9 @@ block = "{" , block contents , "}" ;
 block contents = { [white] , block expression , [white] } ;
 block expression = expression | gb2 ;
 gb2 = "gb2 " , expression ;
+
+tier list = tier , { tier } , " 100% accurate" ;
+tier = condition , " TIER: " , expression ;
+condition = expression | "SHIT" ;
 
 source file = block contents ;
