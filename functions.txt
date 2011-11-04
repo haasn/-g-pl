@@ -22,7 +22,8 @@ the current scope in which they were created. If this function gets passed elsew
 them.
 
 What happens when you call a function is that a new scope is created /inside/ the function's execution scope,
-with each of the named parameters being created there with the type and value of the parameter's expression.
+with each of the named parameters being created there with the type and value of the parameter's expression, which
+are evaluated from left to right.
 
 If you result an intermediate function directly, eg. `>>function(x) gb2 >+ x x 5`, what happens is that the intermediate
 value of the first expression (“>function(x) gb2 >+ x x”), which carries with it a special scope (that is not normally
