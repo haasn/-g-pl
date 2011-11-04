@@ -102,7 +102,7 @@ namespace GPL
 
 
         static Parser<FunctionCreation> FunctionCreation = from lead in Parse.String(">function")
-                                                           from names in FunctionNames
+                                                           from names in FunctionNames.Or(Parse.Return(new List<string>()))
                                                            from sep in Parse.Char(' ')
                                                            from body in Expression
                                                            select new FunctionCreation(body, names);

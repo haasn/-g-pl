@@ -10,7 +10,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            const string test = ">implying test isn't >function(bat,baz) bat >implying foo isn't 40 >implying bar isn't 30 >test foo bar;";
+            const string test = ">implying foo isn't >function(x) >function(x) x >>foo 3; 5;";
 
             IExpression p = GPLParser.ParseFile(test);
 
