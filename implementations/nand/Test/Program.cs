@@ -52,8 +52,16 @@ namespace Test
 >implying closure isn't 2
 >implying addtwo isn't >function(x) >add closure x;
 
+>implying foo isn't >function >function >function >mfw forever alone;
+>>>foo;;;
+
 >mfw >addone 3;;
 >mfw >addtwo 3;;
+
+>implying oldmfw isn't >function(x) >mfw x;
+>implying mfw isn't forever alone
+
+>oldmfw false;
 ";
 
             IExpression p = GPLParser.ParseFile(test);

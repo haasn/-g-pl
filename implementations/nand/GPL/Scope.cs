@@ -18,7 +18,7 @@ namespace GPL
 
         public Scope Copy()
         {
-            Scope cp = new Scope(Parent);
+            Scope cp = new Scope(Parent == null ? null : Parent.Copy());
 
             foreach (var kvp in Variables)
                 cp.Variables.Add(kvp.Key, kvp.Value.Copy());

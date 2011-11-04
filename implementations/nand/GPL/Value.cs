@@ -122,7 +122,7 @@ namespace GPL
 
         public override Value Copy()
         {
-            return new Function(Body, Execution.Copy(), Names);
+            return new Function(Body, Execution, Names);
         }
     }
 
