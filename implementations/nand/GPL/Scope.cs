@@ -26,5 +26,12 @@ namespace GPL
                 else
                     return Parent.Find(name);
         }
+
+        public static Scope Global = new Scope(null);
+
+        static Scope() // static constructor
+        {
+            Global.Variables.Add("mfw", new Integer(500));
+        }
     }
 }

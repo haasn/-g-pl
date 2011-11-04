@@ -18,7 +18,8 @@ namespace GPL
         static Parser<IEnumerable<char>> space = Parse.WhiteSpace.Many();
 
         // Names
-        static Parser<char> nameStart = Parse.CharExcept(c => true, "name chars");
+        static Parser<char> nameStart = Parse.CharExcept(c => "->.\"{}".Contains(c) || Char.IsControl(c) ||
+                                                              Char.IsDigit(c) || Char.IsWhiteSpace(c), "name chars");
 
         static Parser<Name> Name = from start in nameStart
                                    from rest in nameStart.Or(Parse.Digit).Or(Parse.Char('-')).Many().Text()
@@ -66,7 +67,7 @@ namespace GPL
         static Parser<IExpression> Expression = Literal.Or<IExpression>(Name).Or(BlockParser);
 
         // Entire source file
-        static Parser<Block> SourceFile = from be in BlockExpression.Many()
+        static Parser<Block> SourceFile = from be in BlockExpression.Many().End()
                                           select new Block(be);
     }
 }

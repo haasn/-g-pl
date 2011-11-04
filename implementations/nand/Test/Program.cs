@@ -10,11 +10,10 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            const string test = "";
+            const string test = "mfw";
             IExpression p = GPLParser.ParseFile(test);
 
-            Scope global = new Scope(null);
-            Value v = p.Evaluate(global);
+            Value v = p.Evaluate(Scope.Global);
         }
     }
 }
