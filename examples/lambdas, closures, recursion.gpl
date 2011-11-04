@@ -15,7 +15,7 @@ inane Even though they both reference the “same” closed variable, they reflect t
 
 inane Scope copying works its way up recursively
 >implying oldmfw isn't >function(x) >mfw x;
->implying mfw isn't forever alone
+>implying mfw wasn't forever alone
 
 inane Even though oldmfw references “mfw” which got overwritten, it still calls the “old” mfw
 >oldmfw false;

@@ -59,7 +59,7 @@ namespace Test
 >mfw >addtwo 3;;
 
 >implying oldmfw isn't >function(x) >mfw x;
->implying mfw isn't forever alone
+>implying mfw wasn't forever alone
 
 >oldmfw false;
 ";
