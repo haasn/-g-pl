@@ -1,6 +1,5 @@
 Sequenced expressions are separated by whitespace (with or without newlines).  All source files are explicitly
-UTF-8, and all names may include special UTF runes provided they are not in the group of whitespace or control
-characters.
+UTF-8.
 
 Files behave like a large block without the { }, and the result of running a file is the result of the block,
 as per usual block result rules (all “gb2” and last-expression rules apply).
