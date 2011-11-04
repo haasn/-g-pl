@@ -172,8 +172,8 @@ namespace GPL
                 var x = scope.Find("x");
                 var y = scope.Find("y");
 
-                if (x.Type == GPLType.String && y.Type == GPLType.String) // concat
-                    return new String(((String)x).Value + ((String)y).Value);
+                if (x.Type == GPLType.String || y.Type == GPLType.String) // concat
+                    return new String(ToString(x) + ToString(y));
 
                 if (x.Type == GPLType.Integer)
                 {

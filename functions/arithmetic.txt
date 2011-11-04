@@ -5,4 +5,4 @@
 = pow(x, y) =
 
  These built-ins will perform their respective mathematical operations. These work on any combination of float and
- integers, with the exception of add(x, y), which works on strings as well.
+ integers, with the exception of add(x, y), which works on strings as well (a string can be added to any type)
