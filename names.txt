@@ -1,6 +1,7 @@
 All names may include special UTF runes provided they are not in the group of whitespace or control
 characters. Names may NOT start with a digit from 0 to 9 or a minus sign (‘-’), in addition to theforbidden
-runes previously described. A name may also not contain any period (‘.’), quote (‘"’) or curly brace (‘{’ and ‘}’)
+runes previously described. A name may also not contain any period (‘.’), quote (‘"’), a curly brace (‘{’ and ‘}’),
+a command (‘,’), a semicolon (‘;’) or parentheses (‘(’ and ‘)’).
 
 All names are case sensitive.
 
