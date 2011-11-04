@@ -91,6 +91,11 @@ namespace GPL
             this.Execution = scope;
             this.Names = names;
         }
+
+        public static Function Make(Func<Scope, Value> exp, params string[] args)
+        {
+            return new Function(new Builtin(exp), Scope.Global, new List<string>(args));
+        }
     }
 
     public class ForeverAlone : Value

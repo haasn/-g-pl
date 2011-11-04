@@ -1,6 +1,7 @@
 = mfw(value) =
 
  This built-in will print the formatted value of “value” to stdout. Works on every type! >string is not needed
+ Returns the value given.
 
 = yfw =
 

@@ -46,7 +46,7 @@ namespace GPL
 
         static Scope() // static constructor
         {
-            Global.Variables.Add("mfw", new Integer(500));
+            Builtins.AddBuiltins();
         }
     }
 }
