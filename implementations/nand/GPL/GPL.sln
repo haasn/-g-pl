@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPL", "GPL.csproj", "{185971B1-FD45-473F-9961-140C9520A917}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\Test\Test.csproj", "{E1FB3B2C-DFC1-403C-A8D5-0AD43376AE02}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{185971B1-FD45-473F-9961-140C9520A917}.Debug|x86.ActiveCfg = Debug|x86
+		{185971B1-FD45-473F-9961-140C9520A917}.Debug|x86.Build.0 = Debug|x86
+		{185971B1-FD45-473F-9961-140C9520A917}.Release|x86.ActiveCfg = Release|x86
+		{185971B1-FD45-473F-9961-140C9520A917}.Release|x86.Build.0 = Release|x86
+		{E1FB3B2C-DFC1-403C-A8D5-0AD43376AE02}.Debug|x86.ActiveCfg = Debug|x86
+		{E1FB3B2C-DFC1-403C-A8D5-0AD43376AE02}.Debug|x86.Build.0 = Debug|x86
+		{E1FB3B2C-DFC1-403C-A8D5-0AD43376AE02}.Release|x86.ActiveCfg = Release|x86
+		{E1FB3B2C-DFC1-403C-A8D5-0AD43376AE02}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
