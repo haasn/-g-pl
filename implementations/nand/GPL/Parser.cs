@@ -18,13 +18,17 @@ namespace GPL
         static Parser<IEnumerable<char>> space = Parse.WhiteSpace.Many();
 
         // Names
-        static Parser<char> nameStart = Parse.CharExcept(c => "->.\"{}".Contains(c) || Char.IsControl(c) ||
+        static Parser<char> nameStart = Parse.CharExcept(c => "->.\"{}();,".Contains(c) || Char.IsControl(c) ||
                                                               Char.IsDigit(c) || Char.IsWhiteSpace(c), "name chars");
 
-        static Parser<Name> NameParser = from start in nameStart
-                                         from rest in nameStart.Or(Parse.Digit).Or(Parse.Char('-')).Many().Text()
-                                         where !Name.Reserved.Contains(start + rest)
-                                         select new Name(start + rest);
+        static Parser<string> nameParser = from start in nameStart
+                                           from rest in nameStart.Or(Parse.Digit).Or(Parse.Char('-')).Many().Text()
+                                           where !Name.Reserved.Contains(start + rest)
+                                           select start + rest;
+
+        // Using a variable
+        static Parser<Name> Variable = from name in nameParser
+                                       select new Name(name);
 
         // Literals
         static Parser<ForeverAlone> ForeverAloneLiteral = from _ in Parse.String("forever alone")
@@ -54,40 +58,62 @@ namespace GPL
 
         // Blocks
         static Parser<Block> BlockParser = from lead in Parse.Char('{')
-                                           from exp in BlockExpression.Many()
+                                           from exp in Expression.Many()
                                            from trail in Parse.Char('}')
                                            select new Block(exp);
 
         // TODO: implement gb2
-        static Parser<IExpression> BlockExpression = from lead in space
-                                                     from body in Expression
-                                                     from trail in space
-                                                     select body;
+        //static Parser<IExpression> BlockExpression = Expression;
 
         // Implications
         static Parser<Implication> Declaration = from lead in Parse.String(">implying ")
-                                                 from name in NameParser
-                                                 select new Implication(name.Identifier);
+                                                 from name in nameParser
+                                                 select new Implication(name);
 
         static Parser<ImplicationIsnt> Creation = from lead in Parse.String(">implying ")
-                                                  from name in NameParser
+                                                  from name in nameParser
                                                   from isnt in Parse.String(" isn't ")
                                                   from val in Expression
-                                                  select new ImplicationIsnt(name.Identifier, val);
+                                                  select new ImplicationIsnt(name, val);
 
         static Parser<ImplicationWasnt> Assignment = from lead in Parse.String(">implying ")
-                                                     from name in NameParser
+                                                     from name in nameParser
                                                      from wasnt in Parse.String(" wasn't ")
                                                      from val in Expression
-                                                     select new ImplicationWasnt(name.Identifier, val);
+                                                     select new ImplicationWasnt(name, val);
 
         static Parser<Implication> ImplicationParser = Creation.Or<Implication>(Assignment).Or(Declaration);
 
+        // Functions
+        static Parser<FunctionCall> FunctionApplication = from lead in Parse.Char('>')
+                                                          from func in Expression
+                                                          from args in Expression.Many()
+                                                          from stop in Parse.Char(';')
+                                                          select new FunctionCall(func, args);
+
+        static Parser<IEnumerable<string>> FunctionNames = from lead in Parse.Char('(')
+                                                           from first in nameParser
+                                                           from rest in
+                                                               (from comma in Parse.Char(',')
+                                                                from name in nameParser
+                                                                select name).Many()
+                                                           from trail in Parse.Char(')')
+                                                           select new string[] { first }.Concat(rest);
+
+
+        static Parser<FunctionCreation> FunctionCreation = from lead in Parse.String(">function")
+                                                           from names in FunctionNames
+                                                           from sep in Parse.Char(' ')
+                                                           from body in Expression
+                                                           select new FunctionCreation(body, names);
+
+        static Parser<IExpression> FunctionParser = FunctionApplication.Or<IExpression>(FunctionCreation);
+
         // Expressions
-        static Parser<IExpression> Expression = Literal.Or<IExpression>(NameParser).Or(BlockParser).Or(ImplicationParser);
+        static Parser<IExpression> Expression = Literal.Or<IExpression>(Variable).Or(BlockParser).Or(ImplicationParser).Or(FunctionParser).Token();
 
         // Entire source file
-        static Parser<Block> SourceFile = from be in BlockExpression.Many().End()
+        static Parser<Block> SourceFile = from be in Expression.Many().End()
                                           select new Block(be);
     }
 }

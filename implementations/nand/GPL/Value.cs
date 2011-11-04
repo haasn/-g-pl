@@ -85,11 +85,11 @@ namespace GPL
         public IExpression Body { get; private set; }
         public Scope Execution { get; private set; }
 
-        public Function(IExpression body, Scope scope, params string[] names)
+        public Function(IExpression body, Scope scope, List<string> names)
         {
             this.Body = body;
             this.Execution = scope;
-            this.Names = new List<string>(names);
+            this.Names = names;
         }
     }
 
