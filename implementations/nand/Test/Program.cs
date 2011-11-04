@@ -10,7 +10,14 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            const string test = "false TIER: >mfw \"false\"; SHIT TIER: >mfw \"true\"; 100% accurate";
+            const string test = @"
+>implying adder isn't >function(x)
+    >function(y)
+        >add x y;
+
+>implying addfive isn't >adder 5;
+
+>mfw >addfive 3;;";
 
             IExpression p = GPLParser.ParseFile(test);
 

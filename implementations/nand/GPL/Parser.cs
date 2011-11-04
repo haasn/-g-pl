@@ -21,10 +21,10 @@ namespace GPL
         static Parser<char> nameStart = Parse.CharExcept(c => "->.\"{}();,".Contains(c) || Char.IsControl(c) ||
                                                               Char.IsDigit(c) || Char.IsWhiteSpace(c), "name chars");
 
-        static Parser<string> nameParser = from start in nameStart
-                                           from rest in nameStart.Or(Parse.Digit).Or(Parse.Char('-')).Many().Text()
-                                           where !Name.Reserved.Contains(start + rest)
-                                           select start + rest;
+        static Parser<string> nameParser = (from start in nameStart
+                                            from rest in nameStart.Or(Parse.Digit).Or(Parse.Char('-')).Many().Text()
+                                            where !Name.Reserved.Contains(start + rest)
+                                            select start + rest).Token();
 
         // Using a variable
         static Parser<Name> Variable = from name in nameParser
@@ -66,19 +66,19 @@ namespace GPL
         //static Parser<IExpression> BlockExpression = Expression;
 
         // Implications
-        static Parser<Implication> Declaration = from lead in Parse.String(">implying ")
+        static Parser<Implication> Declaration = from lead in Parse.String(">implying")
                                                  from name in nameParser
                                                  select new Implication(name);
 
-        static Parser<ImplicationIsnt> Creation = from lead in Parse.String(">implying ")
+        static Parser<ImplicationIsnt> Creation = from lead in Parse.String(">implying")
                                                   from name in nameParser
-                                                  from isnt in Parse.String(" isn't ")
+                                                  from isnt in Parse.String("isn't")
                                                   from val in Expression
                                                   select new ImplicationIsnt(name, val);
 
-        static Parser<ImplicationWasnt> Assignment = from lead in Parse.String(">implying ")
+        static Parser<ImplicationWasnt> Assignment = from lead in Parse.String(">implying")
                                                      from name in nameParser
-                                                     from wasnt in Parse.String(" wasn't ")
+                                                     from wasnt in Parse.String("wasn't")
                                                      from val in Expression
                                                      select new ImplicationWasnt(name, val);
 
@@ -103,17 +103,16 @@ namespace GPL
 
         static Parser<FunctionCreation> FunctionCreation = from lead in Parse.String(">function")
                                                            from names in FunctionNames.Or(Parse.Return(new List<string>()))
-                                                           from sep in Parse.Char(' ')
                                                            from body in Expression
                                                            select new FunctionCreation(body, names);
 
         static Parser<IExpression> FunctionParser = FunctionApplication.Or<IExpression>(FunctionCreation);
 
         // Limited expression: Everything but tier lists
-        static Parser<IExpression> explim = Literal.Or<IExpression>(FunctionParser).Or<IExpression>(BlockParser).Or(ImplicationParser).Or(Variable);
+        static Parser<IExpression> explim = Literal.Or<IExpression>(FunctionParser).Or<IExpression>(BlockParser).Or(ImplicationParser).Or(Variable).Token();
 
         // TIER lists
-        static Parser<Tuple<IExpression, IExpression>> Tier = from cond in explim.Token()
+        static Parser<Tuple<IExpression, IExpression>> Tier = from cond in explim
                                                               from text in Parse.String("TIER:")
                                                               from res in Expression
                                                               select new Tuple<IExpression, IExpression>(cond, res);
