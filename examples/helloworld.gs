@@ -18,7 +18,7 @@ inane Ask for the user's name
 >implying name isn't >yfw;
 
 inane Conditional
-name is "nand" TIER:
+>is name "nand" TIER:
     >mfw "power level over 9000";
 SHIT TIER:
     >mfw "get out";
