@@ -19,9 +19,9 @@ namespace GPL
             {
                 return GPLParser.ParseFile(s).Evaluate(Scope.Global);
             }
-            catch (JpgException jpg)
+            catch (Jpg jpg)
             {
-                return jpg.Value;
+                return jpg.Value.Evaluate(Scope.Global);
             }
         }
 

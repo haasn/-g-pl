@@ -25,9 +25,9 @@ namespace GPL
                 foreach (var ie in Body)
                     final = ie.Evaluate(child);
             }
-            catch (Gb2Exception gb2)
+            catch (Gb2 gb2)
             {
-                return gb2.Value;
+                return gb2.Value.Evaluate(scope);
             }
 
             return final;

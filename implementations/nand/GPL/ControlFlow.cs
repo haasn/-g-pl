@@ -5,109 +5,63 @@ using System.Text;
 
 namespace GPL
 {
-    public class Gb2 : IExpression
+    public class Gb2 : Exception, IExpression
     {
         public IExpression Value { get; private set; }
 
-        public Gb2(IExpression value)
+        public Gb2(IExpression value) : base("Unhandled gb2")
         {
             this.Value = value;
         }
 
         public Value Evaluate(Scope scope)
         {
-            throw new Gb2Exception(Value.Evaluate(scope));
+            throw new Gb2(Value.Evaluate(scope));
         }
     }
 
-    public class Jpg : IExpression
+    public class Jpg : Exception, IExpression
     {
         public IExpression Value { get; private set; }
 
-        public Jpg(IExpression value)
+        public Jpg(IExpression value) : base("Unhandled .jpg")
         {
             this.Value = value;
         }
 
         public Value Evaluate(Scope scope)
         {
-            throw new JpgException(Value.Evaluate(scope));
+            throw new Jpg(Value.Evaluate(scope));
         }
     }
 
-    public class Noko : IExpression
+    public class Noko : Exception, IExpression
     {
         public IExpression Value { get; private set; }
 
-        public Noko(IExpression value)
+        public Noko(IExpression value) : base("Unhandled Noko")
         {
             this.Value = value;
         }
 
         public Value Evaluate(Scope scope)
         {
-            throw new NokoException(Value.Evaluate(scope));
+            throw new Noko(Value.Evaluate(scope));
         }
     }
 
-    public class Sage : IExpression
+    public class Sage : Exception, IExpression
     {
         public IExpression Value { get; private set; }
 
-        public Sage(IExpression value)
+        public Sage(IExpression value) : base("Unhandled Sage")
         {
             this.Value = value;
         }
 
         public Value Evaluate(Scope scope)
         {
-            throw new SageException(Value.Evaluate(scope));
+            throw new Sage(Value.Evaluate(scope));
         }
     }
-
-    #region Exceptions
-    public class Gb2Exception : Exception
-    {
-        public Value Value { get; private set; }
-
-        public Gb2Exception(Value value)
-            : base("Unhandled gb2 expression!")
-        {
-            this.Value = value;
-        }
-    }
-
-    public class JpgException : Exception
-    {
-        public Value Value { get; private set; }
-
-        public JpgException(Value value)
-            : base("Unhandled jpg expression!")
-        {
-            this.Value = value;
-        }
-    }
-
-    public class NokoException : Exception
-    {
-        public Value Value { get; private set; }
-
-        public NokoException(Value value)
-            : base("Unhandled noko expression!")
-        {
-            this.Value = value;
-        }
-    }
-
-    public class SageException : Exception
-    {
-        public Value Value { get; private set; }
-
-        public SageException(Value value)
-            : base("Unhandled sage expression!")
-        {
-            this.Value = value;
-        }
-    }
-    #endregion
 }

@@ -76,9 +76,9 @@ namespace GPL
             {
                 return f.Body.Evaluate(s);
             }
-            catch (JpgException jpg)
+            catch (Jpg jpg)
             {
-                return jpg.Value;
+                return jpg.Value.Evaluate(scope);
             }
         }
     }
