@@ -9,11 +9,6 @@ namespace GPL
 {
     public static class GPLParser
     {
-        public static Block ParseFile(string source)
-        {
-            return ParseFile(new MemoryStream(Encoding.UTF8.GetBytes(source)));
-        }
-
         public static Block ParseFile(Stream source)
         {
             var sb = new StringBuilder();

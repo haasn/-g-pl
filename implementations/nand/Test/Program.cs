@@ -22,13 +22,11 @@ namespace Test
      gb2 -1
  }
 
->foo true;
+>foo false;
 
 ";
 
-            IExpression p = GPLParser.ParseFile(test);
-
-            Value v = p.Evaluate(Scope.Global);
+            Value v = Interpreter.Run(test);
         }
     }
 }

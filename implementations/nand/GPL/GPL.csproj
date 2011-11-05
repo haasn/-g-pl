@@ -43,6 +43,7 @@
     <Compile Include="Expression.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="Implication.cs" />
+    <Compile Include="Interpreter.cs" />
     <Compile Include="Name.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Scope.cs" />
