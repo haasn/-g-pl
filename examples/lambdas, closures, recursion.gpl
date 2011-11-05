@@ -2,6 +2,8 @@ inane Functions exhibit the full, completely untyped lambda calculus. That is, f
 >implying foo isn't >function >function >function >mfw forever alone;
 >>>foo;;;
 
+
+
 inane /g/script has full closures, unlike lolpython
 >implying closed isn't 1
 >implying addone isn't >function(x) >add closed x;
@@ -13,6 +15,8 @@ inane Even though they both reference the “same” closed variable, they reflect t
 >mfw >addone 3;;
 >mfw >addtwo 3;;
 
+
+
 inane Scope copying works its way up recursively
 >implying oldmfw isn't >function(x) >mfw x;
 >implying mfw wasn't forever alone
@@ -23,6 +27,22 @@ inane Even though oldmfw references “mfw” which got overwritten, it still calls 
 inane Get our mfw back for the rest of the examples
 >implying mfw wasn't oldmfw
 
+
+
+inane Full lexical scoping applies, and shadowing is possible
+{
+    >implying foo isn't "foo"
+    {
+        >implying foo isn't "bar"
+        >mfw foo;
+
+        inane You can, of course, overwrite the previous foo by using “wasn't” instead of “isn't”. But “isn't” creates a new variable.
+    }
+    >mfw foo;
+}
+
+
+
 inane Recursive factorial function example
 >implying factorial isn't >function(n)
     >is n 0; TIER: 1
@@ -31,6 +51,8 @@ inane Recursive factorial function example
 
 inane Will print 120
 >mfw >factorial 5;;
+
+
 
 inane Recursion is usable inside anonymous functions
 >>function(x)
