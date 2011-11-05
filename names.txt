@@ -12,6 +12,8 @@ All names are case sensitive.
  SHIT
  TIER
  gb2
+ sage
+ noko
  forever
  alone
  true
