@@ -155,7 +155,7 @@ namespace GPL
                                             from post in Parse.Digit.AtLeastOnce().Text()
                                             select new Float(decimal.Parse(neg + pre + dot + post));
 
-        static Parser<Value> Literal = ForeverAloneLiteral.Or<Value>(BoolLiteral).Or(StringLiteral).Or(IntLiteral).Or(FloatLiteral);
+        static Parser<Value> Literal = ForeverAloneLiteral.Or<Value>(BoolLiteral).Or(StringLiteral).Or(FloatLiteral).Or(IntLiteral);
 
         // Blocks
         static Parser<Block> BlockParser = from lead in Parse.Char('{')
