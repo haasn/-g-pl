@@ -1,1 +1,5 @@
 This part of the draft focusses on adding documentation to /g/pl files.
+
+
+note by graydude:
+My goal for this is to have a method to document a program. The tripfaggotry method can document the program itself, I'd like to have a method to document functions as well, kind of like JavaDoc.
