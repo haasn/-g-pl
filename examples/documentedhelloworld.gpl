@@ -1,0 +1,19 @@
+tripfaggotry
+	name: Documented hello world example
+	author: graydude
+	date: 05-11-2011
+filtered
+
+I'd just like to interject
+	This document shows how a program can be documented. 
+	Right now, the only documentation method available is 
+	the tripfaggotry method for documenting the entire
+	file.
+Linux
+
+
+>mfw "Hello world";
+
+I'd just like to interject
+	You can find the output of the tripfaggotry parser in /implementations/graydude/tripfaggotry/ when run on this file in documentedhelloworld.faggotry 
+Linux
