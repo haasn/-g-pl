@@ -1,4 +1,4 @@
-I'd like to interject
+﻿I'd like to interject
 	This file is an example of a g#/g++/-g-pl source file 
 	according to current specifications.
 Linux
@@ -12,6 +12,10 @@ inane Concatenate them in hw
 
 inane Output it
 >mfw hw;
+
+inane UTF-8 is supported completely
+>implying 漢字 isn't "こんにちは、　/じ/"
+>mfw 漢字;
 
 inane Ask for the user's name
 >mfw "what's your name, faggot?";
