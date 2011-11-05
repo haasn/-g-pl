@@ -21,7 +21,7 @@ namespace GPL
 
         public static string[] Reserved = new string[]
         {
-            "implying", "function", "SHIT", "TIER", "gb2", "forever", "alone", "true", "false", "yes", "no", "on", "off"
+            "implying", "function", "SHIT", "TIER", "gb2", "forever", "alone", "true", "false", "yes", "no", "on", "off", "sage", "noko"
         };
     }
 }

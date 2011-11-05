@@ -4,7 +4,7 @@ After that, the code is verified and tokenized using the following EBNF:
 
 whitespace = { ? all white space including newlines ? }
 
-limited expression = literal | function application | function creation | block | implication | name ;
+limited expression = literal | function application | function creation | block | implication | name | control flow ;
 full expression = tier list | limited expression ;
 function expression = full expression - literal ;
 expression = [ whitespace ] , full expression , [ white space] ;
@@ -31,9 +31,13 @@ function names = "" | "(" , { name } , ")" ;
 function application = ">" , function expression , { expression } , ";" ;
 
 block = "{" , block contents , "}" ;
-block contents = { [white] , block expression , [white] } ;
-block expression = expression | gb2 ;
+block contents = { [white] , expression , [white] } ;
+
+control flow = gb2 | noko | sage | jpg ;
 gb2 = "gb2 " , expression ;
+noko = "noko ", expression ;
+sage = "sage ", expression ;
+jpg = expression , ".jpg" ;
 
 tier list = tier , { tier } , "100% accurate" ;
 tier = condition , "TIER:" , expression ;
