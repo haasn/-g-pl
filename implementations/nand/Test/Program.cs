@@ -11,7 +11,14 @@ namespace Test
         static void Main(string[] args)
         {
             const string test = @"
+inane This is a single line comment
 >mfw ""hello \\ world"";
+
+I'd like to interject
+    This is some comment block
+    This is an escaped form: GNU/Linux
+    Bla bla bla
+Linux
 
 >implying assert isn't >function(x, y)
     >is x y; TIER:

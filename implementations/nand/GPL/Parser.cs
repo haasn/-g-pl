@@ -17,15 +17,36 @@ namespace GPL
         public static Block ParseFile(Stream source)
         {
             var sb = new StringBuilder();
+            var tmp = new StringBuilder();
             var sr = new StreamReader(source);
             bool instring = false, incomment = false, inescape = false;
-            char[] buffer = new char[5];
+            char[] buffer = new char[26];
 
             while (!sr.EndOfStream)
             {
                 char c = (char)sr.Read();
 
-                if (instring)
+                if (incomment)
+                {
+                    tmp.Append(c);
+
+                    if (c == 'x') // could be linux
+                    {
+                        if (tmp.Length >= 9) // GNU/Linux
+                            tmp.CopyTo(tmp.Length - 9, buffer, 4, 9); // offset by 4 to prevent collisions. Everything after 4 is filled with “I'd like to interject”
+                        else if (tmp.Length >= 5) // Linux
+                            tmp.CopyTo(tmp.Length - 5, buffer, 8, 5);
+                        else
+                            continue; // Can't be a terminator yet
+
+                        if (new string(buffer, 8, 5) == "Linux" && new string(buffer, 4, 9) != "GNU/Linux") // terminator that isn't escaped
+                        {
+                            tmp.Clear();
+                            incomment = false;
+                        }
+                    }
+                }
+                else if (instring)
                 {
                     if (inescape)
                     {
@@ -62,14 +83,34 @@ namespace GPL
                     {
                         sb.Append(c);
 
-                        if (c == 'e') // could be inane
+                        if (c == 'e' && sb.Length >= 5) // could be comment
                         {
                             sb.CopyTo(sb.Length - 5, buffer, 0, 5);
 
-                            if (new string(buffer) == "inane")
+                            if (new string(buffer, 0, 5) == "inane")
                             {
                                 sb.Remove(sb.Length - 5, 5);
                                 sr.ReadLine();
+                            }
+                        }
+                        else if (c == 't') // could be comment block
+                        {
+                            if (sb.Length >= 26) // I'd just like to interject
+                                sb.CopyTo(sb.Length - 26, buffer, 0, 26);
+                            else if (sb.Length >= 21) // I'd like to interject
+                                sb.CopyTo(sb.Length - 21, buffer, 5, 21);
+                            else
+                                continue; // can't be a comment yet
+
+                            if (new string(buffer, 5, 21) == "I'd like to interject")
+                            {
+                                sb.Remove(sb.Length - 21, 21);
+                                incomment = true;
+                            }
+                            else if (new string(buffer, 0, 26) == "I'd just like to interject")
+                            {
+                                sb.Remove(sb.Length - 26, 26);
+                                incomment = true;
                             }
                         }
                     }
