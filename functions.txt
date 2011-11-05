@@ -12,7 +12,7 @@ whitespace including tabs, newlines and spaces. They are explicitly terminated b
 calls and creations are expressions.
 
 A function expression is a standard expression with the exception of literals. This was introduced to solve some
-ambiguity issues during parsing.
+ambiguity issues during parsing. A function expression may also the the special form “this”.
 
 Functions, as mentioned above, carry with them a special scope. When a function is created, their scope is copied
 from the current scope in which they were created. That is, they implement full closure logic. If this function
@@ -31,5 +31,8 @@ a new scope is created inside the function's execution scope (which is the curre
 one inside its own scope, gets added to itself, and the result of that expression gets carried upwards during evaluation.
 
 So writing `>mfw >>function(x) >add x x; 5;;` will output a “10”.
+
+There is a special form of function call, using the syntax `>this [parameter...];` which calls the closest overlying
+function, this can be used to eg. recurse.
 
 Attempting to call a variable that is not a function (eg. an integer or a string) will result in a fatal error.
