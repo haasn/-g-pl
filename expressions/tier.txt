@@ -7,7 +7,7 @@ The “TIER” expression has the form:
   
 and its effect is to evaluate one and only one of the resulting [resn] blocks, depending on which [condn] first
 returns a result of “true”, as processed in a top-down order. The condition and expression may be separated by
-newlines and whitespace for clarity.
+newlines and whitespace for clarity. A TIER list will return the evaluated value, or forever alone if none matched.
 
 A special TIER, named “SHIT TIER”, will always execute if reached. (See: Types section)
 
