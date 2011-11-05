@@ -11,7 +11,7 @@ A function call's parameters, as well as the name and the first parameter, may b
 whitespace including tabs, newlines and spaces. They are explicitly terminated by a semicolon. Function
 calls and creations are expressions.
 
-A function expression is a regular expression with the exception of literals. This was introduced to solve some
+A function expression is a standard expression with the exception of literals. This was introduced to solve some
 ambiguity issues during parsing.
 
 Functions, as mentioned above, carry with them a special scope. When a function is created, their scope is copied
