@@ -34,11 +34,11 @@ Example: [INCORRECT]
 
 `>implying foo isn't >function(x) {
      x TIER: {
-         >mfw "true"
+         >mfw "true";
          gb2 forever alone
      } 100% accurate
 
-     >mfw "false"
+     >mfw "false";
      gb2 -1
  }`
 
@@ -49,11 +49,11 @@ The correct usage would be:
 
 `>implying foo isn't >function(x) {
      x TIER: {
-         >mfw "true"
+         >mfw "true";
          forever alone.jpg
      } 100% accurate
 
-     >mfw "false"
+     >mfw "false";
      gb2 -1
  }`
 
@@ -63,7 +63,7 @@ Which will actually match the entire overlying function. Alternatively, it could
      x TIER: gb2 >mfw "true";
      100% accurate
 
-     >mfw "false"
+     >mfw "false";
      gb2 -1
  }`
 
