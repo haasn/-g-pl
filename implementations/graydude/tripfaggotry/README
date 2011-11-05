@@ -1,0 +1,23 @@
+This is the implementation for the proposed tripfaggotry expression, not in the standard yet.
+
+The goal of the expression/block is to provide some documentation, much like how JavaDoc works.
+
+The block starts with:
+
+	tripfaggotry
+
+and ends with:
+
+	filtered
+
+The block content is a collection of keys and data. Everything is a string.
+
+Example:
+
+trifaggotry
+	author: graydude
+	name: example program
+	date: 5-11-2011
+filtered
+
+This document does not yet provide any standards on what keys should be used.
