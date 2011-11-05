@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using Sprache;
 
 namespace GPL
@@ -10,8 +11,58 @@ namespace GPL
     {
         public static Block ParseFile(string source)
         {
-            // TODO: remove whitespace and comments
-            return SourceFile.Parse(source);
+            return ParseFile(new MemoryStream(Encoding.UTF8.GetBytes(source)));
+        }
+
+        public static Block ParseFile(Stream source)
+        {
+            var sb = new StringBuilder();
+            var sr = new StreamReader(source);
+            bool instring = false, incomment = false, inescape = false;
+
+            while (!sr.EndOfStream)
+            {
+                char c = (char)sr.Read();
+
+                if (instring)
+                {
+                    if (inescape)
+                    {
+                        switch (c)
+                        {
+                            case '\\':
+                            case '"':
+                                sb.Append(c);
+                                inescape = false;
+                                break;
+
+                            default:
+                                throw new Exception("Unrecognized escape sequence: \\" + c);
+                        }
+                    }
+                    else if (c == '\\')
+                        inescape = true;
+                    else if (c == '"')
+                    {
+                        sb.Append('”');
+                        instring = false;
+                    }
+                    else
+                        sb.Append(c);
+                }
+                else
+                {
+                    if (c == '"')
+                    {
+                        instring = true;
+                        sb.Append('“');
+                    }
+                    else
+                        sb.Append(c);
+                }
+            }
+
+            return SourceFile.Parse(sb.ToString());
         }
 
         // Whitespace
@@ -38,10 +89,10 @@ namespace GPL
                                                     Parse.String("off")).Or(Parse.String("yes")).Or(Parse.String("no")).Or(Parse.String("SHIT")).Text()
                                           select Bool.Parse(v);
 
-        static Parser<String> StringLiteral = from open in Parse.Char('"')
+        static Parser<String> StringLiteral = from open in Parse.Char('“')
                                               // TODO: add escaping
-                                              from contents in Parse.CharExcept(c => "\\\"".Contains(c), "string character").Many().Text()
-                                              from close in Parse.Char('"')
+                                              from contents in Parse.CharExcept(c => "“”".Contains(c), "string character").Many().Text()
+                                              from close in Parse.Char('”')
                                               select new String(contents);
 
         static Parser<Integer> IntLiteral = from neg in Parse.Char('-').Or(Parse.Return(' '))

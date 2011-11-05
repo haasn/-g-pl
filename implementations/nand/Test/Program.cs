@@ -11,6 +11,8 @@ namespace Test
         static void Main(string[] args)
         {
             const string test = @"
+>mfw ""hello \\ world"";
+
 >implying assert isn't >function(x, y)
     >is x y; TIER:
         forever alone
