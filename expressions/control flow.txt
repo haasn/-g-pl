@@ -1,0 +1,71 @@
+The following expressions modify the normal control flow of an overlying expression:
+
+= gb2 expression =
+
+ The “gb2” expression has the form:
+ `gb2 [value]` (value :: Expression)
+ and, when used inside the execution of a block, evaluates [value] and returns it.
+
+= noko expression =
+
+ The “noko” expression has the form:
+ `noko [value]` (value :: Expression)
+ and, when used inside the execution of a loop, evaluates [value] and returns from the loop body.
+
+= sage expression =
+
+ The “sage” expression has the form:
+ `sage [value]` (value :: Expression)
+ and works like noko, except that it also halts execution of the enclosing loop entirely.
+
+= .jpg expression =
+
+ The “.jpg” expression has the form:
+ `[value].jpg` (value :: Expression)
+ and, when used inside the execution of a function, evaluates [value] and returns from the function body.
+
+ In addition to functions, this may also bind on the global scope, which ends the program.
+
+A strong differentiation is made between the various forms, which behave similarly, based on which context they match.
+A “gb2” expression will only match the overlying block, “noko” and “sage” will only match loops, and “.jpg” will only
+match functions (and the main program).
+
+Example: [INCORRECT]
+
+`>implying foo isn't >function(x) {
+     x TIER: {
+         >mfw "true"
+         gb2 forever alone
+     } 100% accurate
+
+     >mfw "false"
+     gb2 -1
+ }`
+
+In this incorrect example, “gb2” will only break out of the overlying block, belonging here to the { } inside the TIER.
+As such, >foo true; would print “true” followed by “false”.
+
+The correct usage would be:
+
+`>implying foo isn't >function(x) {
+     x TIER: {
+         >mfw "true"
+         forever alone.jpg
+     } 100% accurate
+
+     >mfw "false"
+     gb2 -1
+ }`
+
+Which will actually match the entire overlying function. Alternatively, it could have been contracted to this:
+
+`>implying foo isn't >function(x) {
+     x TIER: gb2 >mfw "true";
+     100% accurate
+
+     >mfw "false"
+     gb2 -1
+ }`
+
+Because in this case, we know that >mfw "true" will always return forever alone, so we can just return that directly. In
+this example, the “gb2” matches the overlying block. Once could also have written, of course, “>mfw "true";.jpg”.
