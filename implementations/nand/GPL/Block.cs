@@ -20,8 +20,15 @@ namespace GPL
             Scope child = new Scope(scope);
             Value final = new ForeverAlone();
 
-            foreach (var ie in Body)
-                final = ie.Evaluate(child);
+            try
+            {
+                foreach (var ie in Body)
+                    final = ie.Evaluate(child);
+            }
+            catch (Gb2Exception gb2)
+            {
+                return gb2.Value;
+            }
 
             return final;
         }

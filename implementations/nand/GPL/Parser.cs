@@ -168,8 +168,12 @@ namespace GPL
                                            from trail in Parse.Char('}')
                                            select new Block(exp);
 
-        // TODO: implement gb2
-        //static Parser<IExpression> BlockExpression = Expression;
+        // Control Flow
+        static Parser<Gb2> Gb2Parser = from gb2 in Parse.String("gb2")
+                                       from exp in Expression
+                                       select new Gb2(exp);
+
+        static Parser<IExpression> ControlFlow = Gb2Parser;
 
         // Implications
         static Parser<Implication> Declaration = from lead in Parse.String(">implying")
@@ -215,8 +219,7 @@ namespace GPL
         static Parser<IExpression> FunctionParser = FunctionApplication.Or<IExpression>(FunctionCreation);
 
         // Limited expression: Everything but tier lists
-        static Parser<IExpression> explim = Literal.Or<IExpression>(FunctionParser).Or<IExpression>(BlockParser).Or(ImplicationParser).Or(Variable).Token();
-        static Parser<IExpression> expfun = FunctionParser.Or<IExpression>(BlockParser).Or(ImplicationParser).Or(Variable).Token();
+        static Parser<IExpression> explim = Literal.Or<IExpression>(FunctionParser).Or<IExpression>(BlockParser).Or(ImplicationParser).Or(ControlFlow).Or(Variable).Token();
 
         // TIER lists
         static Parser<Tuple<IExpression, IExpression>> Tier = from cond in explim

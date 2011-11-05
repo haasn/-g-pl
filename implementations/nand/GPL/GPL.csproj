@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="Block.cs" />
     <Compile Include="Builtins.cs" />
+    <Compile Include="ControlFlow.cs" />
     <Compile Include="Expression.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="Implication.cs" />
