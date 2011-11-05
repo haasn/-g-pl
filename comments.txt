@@ -1,7 +1,8 @@
 A single line comment may be introduced by “inane” and extends to the next newline. A multi-line comment
-may be introduced by the special “I'd like to interject” keyword and terminated with “Linux”. If, for any
+may be introduced by the special “I'd [just] like to interject” keyword and terminated with “Linux”. If, for any
 reason, the “Linux” word wants to be taken as a literal, it may be escaped by the special form “GNU/Linux”
-which will not terminate the comment.
+which will not terminate the comment. The “just” word is optional. Both comment forms are case sensitive.
 
 `inane [comment]`
 `I'd like to interject [comment] Linux`
+`I'd just like to interject [comment] Linux`
