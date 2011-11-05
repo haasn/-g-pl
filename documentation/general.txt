@@ -1,0 +1,26 @@
+A /g/pl source file may be given meta information with the tripfaggotry block. 
+A tripfaggotry block is not necessary, it may be omitted if you don't want to include
+extra information.
+Inside this block, data is ordered with a key and a value. Both fields are strings.
+The block begins with a line 'tripfaggotry' (nothing else can be on this line) and ends
+with a line 'filtered' (as before, nothing else can be on this line).
+The data pairs are organized as 'key:value'.
+
+An example:
+
+`tripfaggotry
+	author: graydude
+	name: example in documentation
+	date: 05-11-2011
+filtered`
+
+Any string that doesn't contain a ':' can be used as a key, the draft does not 
+limit the keys to a certain set.
+
+We propose that the following keys are used for the following data, so people
+can assume this when writing an application that parses the data.
+
+key		| data
+author		| The author of the code
+name		| The name of the program
+date		| The date the program was last modified, formatted dd-mm-yyyy
