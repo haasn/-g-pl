@@ -73,7 +73,7 @@ Linux
 >oldmfw false;
 ";
 
-            IExpression p = GPLParser.ParseFile(test);
+            IExpression p = GPLParser.ParseFile(System.IO.File.OpenRead(@"A:\gpl\examples\helloworld.gpl"));
 
             Value v = p.Evaluate(Scope.Global);
         }

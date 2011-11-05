@@ -18,7 +18,7 @@ inane Ask for the user's name
 >implying name isn't >yfw;
 
 inane Conditional
->is name "nand" TIER:
+>is name "nand"; TIER:
     >mfw "power level over 9000";
 SHIT TIER:
     >mfw "get out";
@@ -31,4 +31,4 @@ inane Lambdas
 >mfw >addfive 3;; inane Will output 8
 
 inane Terminates the program, not explicitly needed but this ensures we have no return type
-gb2 /b/
+inane gb2 /b/

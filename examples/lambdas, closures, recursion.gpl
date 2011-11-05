@@ -18,4 +18,4 @@ inane Scope copying works its way up recursively
 >implying mfw wasn't forever alone
 
 inane Even though oldmfw references “mfw” which got overwritten, it still calls the “old” mfw
->oldmfw false;
+>oldmfw "Hello, world!";
