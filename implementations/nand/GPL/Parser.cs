@@ -19,6 +19,7 @@ namespace GPL
             var sb = new StringBuilder();
             var sr = new StreamReader(source);
             bool instring = false, incomment = false, inescape = false;
+            char[] buffer = new char[5];
 
             while (!sr.EndOfStream)
             {
@@ -58,7 +59,20 @@ namespace GPL
                         sb.Append('“');
                     }
                     else
+                    {
                         sb.Append(c);
+
+                        if (c == 'e') // could be inane
+                        {
+                            sb.CopyTo(sb.Length - 5, buffer, 0, 5);
+
+                            if (new string(buffer) == "inane")
+                            {
+                                sb.Remove(sb.Length - 5, 5);
+                                sr.ReadLine();
+                            }
+                        }
+                    }
                 }
             }
 
