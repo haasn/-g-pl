@@ -20,4 +20,27 @@ inane Scope copying works its way up recursively
 inane Even though oldmfw references “mfw” which got overwritten, it still calls the “old” mfw
 >oldmfw "Hello, world!";
 
-inane Recursion is not currently possible, stand by
+inane Get our mfw back for the rest of the examples
+>implying mfw wasn't oldmfw
+
+inane Recursive factorial function example
+>implying factorial isn't >function(n)
+    >is n 0; TIER: 1
+    SHIT TIER: >mul n >this >sub n 1;;;    inane The >this ; form calls itself
+    100% accurate
+
+inane Will print 120
+>mfw >factorial 5;;
+
+inane Recursion is usable inside anonymous functions
+>>function(x)
+   >is x 0; TIER:
+     forever alone
+   SHIT TIER: {
+     >mfw x;
+     >this >sub x 1;;
+     >mfw x;
+   } 100% accurate
+ 5;
+
+inane This will count from 5 down to 1 and back up

@@ -31,7 +31,17 @@ namespace Test
     SHIT TIER: >mul n >this >sub n 1;;;
 100% accurate
 
->mfw >factorial 5;;
+inane >mfw >factorial 5;;
+
+>>function(x)
+   >is x 0; TIER:
+     forever alone
+   SHIT TIER: {
+     >mfw x;
+     >this >sub x 1;;
+     >mfw x;
+   } 100% accurate
+ 5;
 
 ";
 
