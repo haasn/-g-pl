@@ -37,7 +37,7 @@ control flow = gb2 | noko | sage | jpg ;
 gb2 = "gb2 " , expression ;
 noko = "noko ", expression ;
 sage = "sage ", expression ;
-jpg = expression , ".jpg" ;
+jpg = ">" , expression , ".jpg" ;
 
 tier list = tier , { tier } , "100% accurate" ;
 tier = condition , "TIER:" , expression ;

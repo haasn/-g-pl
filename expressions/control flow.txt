@@ -21,7 +21,7 @@ The following expressions modify the normal control flow of an overlying express
 = .jpg expression =
 
  The “.jpg” expression has the form:
- `[value].jpg` (value :: Expression)
+ `>[value].jpg` (value :: Expression)
  and, when used inside the execution of a function, evaluates [value] and returns from the function body.
 
  In addition to functions, this may also bind on the global scope, which ends the program.
@@ -50,7 +50,7 @@ The correct usage would be:
 `>implying foo isn't >function(x) {
      x TIER: {
          >mfw "true";
-         forever alone.jpg
+         >forever alone.jpg
      } 100% accurate
 
      >mfw "false";
@@ -68,4 +68,4 @@ Which will actually match the entire overlying function. Alternatively, it could
  }`
 
 Because in this case, we know that >mfw "true" will always return forever alone, so we can just return that directly. In
-this example, the “gb2” matches the overlying block. Once could also have written, of course, “>mfw "true";.jpg”.
+this example, the “gb2” matches the overlying block. Once could also have written, of course, “>>mfw "true";.jpg”.
