@@ -19,3 +19,5 @@ inane Scope copying works its way up recursively
 
 inane Even though oldmfw references “mfw” which got overwritten, it still calls the “old” mfw
 >oldmfw "Hello, world!";
+
+inane Recursion is not currently possible, stand by
