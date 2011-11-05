@@ -178,7 +178,15 @@ namespace GPL
                                        from jpg in Parse.String(".jpg")
                                        select new Jpg(exp);
 
-        static Parser<IExpression> ControlFlow = Gb2Parser.Or<IExpression>(JpgParser);
+        static Parser<Noko> NokoParser = from noko in Parse.String("noko")
+                                         from exp in Expression
+                                         select new Noko(exp);
+
+        static Parser<Sage> SageParser = from sage in Parse.String("sage")
+                                         from exp in Expression
+                                         select new Sage(exp);
+
+        static Parser<IExpression> ControlFlow = Gb2Parser.Or<IExpression>(JpgParser).Or(NokoParser).Or(SageParser);
 
         // Implications
         static Parser<Implication> Declaration = from lead in Parse.String(">implying")
