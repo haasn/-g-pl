@@ -24,6 +24,15 @@ namespace Test
 
 >foo false;
 
+>mfw >>function(x) >add x x; 5;;
+
+>implying factorial isn't >function(n)
+    >is n 0; TIER: 1
+    SHIT TIER: >mul n >this >sub n 1;;;
+100% accurate
+
+>mfw >factorial 5;;
+
 ";
 
             Value v = Interpreter.Run(test);

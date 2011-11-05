@@ -209,6 +209,12 @@ namespace GPL
                                                           from stop in Parse.Char(';')
                                                           select new FunctionCall(func, args);
 
+        static Parser<Recursion> FunctionRecursion = from lead in Parse.Char('>')
+                                                     from name in Parse.String("this")
+                                                     from args in Expression.Many()
+                                                     from stop in Parse.Char(';')
+                                                     select new Recursion(args);
+
         static Parser<IEnumerable<string>> FunctionNames = from lead in Parse.Char('(')
                                                            from first in nameParser
                                                            from rest in
@@ -224,7 +230,7 @@ namespace GPL
                                                            from body in Expression
                                                            select new FunctionCreation(body, names);
 
-        static Parser<IExpression> FunctionParser = FunctionApplication.Or<IExpression>(FunctionCreation);
+        static Parser<IExpression> FunctionParser = FunctionRecursion.Or<IExpression>(FunctionApplication).Or(FunctionCreation);
 
         // Limited expression: Everything but tier lists
         static Parser<IExpression> explim = Literal.Or<IExpression>(FunctionParser).Or<IExpression>(BlockParser).Or(ImplicationParser).Or(ControlFlow).Or(Variable).Token();

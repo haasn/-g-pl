@@ -22,6 +22,21 @@ namespace GPL
         }
     }
 
+    public class Recursion : IExpression
+    {
+        public List<IExpression> Params { get; private set; }
+
+        public Recursion(IEnumerable<IExpression> param)
+        {
+            this.Params = new List<IExpression>(param);
+        }
+
+        public Value Evaluate(Scope scope)
+        {
+            return new FunctionCall(scope.Find("this"), Params).Evaluate(scope);
+        }
+    }
+
     public class FunctionCall : IExpression
     {
         public IExpression Fun { get; private set; }
@@ -48,6 +63,9 @@ namespace GPL
 
             // create an execution scope
             Scope s = new Scope(f.Execution);
+
+            // give it our function for recursion
+            s.Create("this", f);
 
             // assign and evaluate all function parameters
             for (int i = 0; i < Params.Count; i++)
