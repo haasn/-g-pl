@@ -54,7 +54,14 @@ namespace GPL
                 s.Create(f.Names[i], Params[i].Evaluate(scope));
 
             // evaluate the function
-            return f.Body.Evaluate(s);
+            try
+            {
+                return f.Body.Evaluate(s);
+            }
+            catch (JpgException jpg)
+            {
+                return jpg.Value;
+            }
         }
     }
 

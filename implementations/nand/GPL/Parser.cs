@@ -173,7 +173,12 @@ namespace GPL
                                        from exp in Expression
                                        select new Gb2(exp);
 
-        static Parser<IExpression> ControlFlow = Gb2Parser;
+        static Parser<Jpg> JpgParser = from lead in Parse.Char('>')
+                                       from exp in Expression
+                                       from jpg in Parse.String(".jpg")
+                                       select new Jpg(exp);
+
+        static Parser<IExpression> ControlFlow = Gb2Parser.Or<IExpression>(JpgParser);
 
         // Implications
         static Parser<Implication> Declaration = from lead in Parse.String(">implying")

@@ -12,11 +12,17 @@ namespace Test
         {
             const string test = @"
 
-{
-    >mfw true;
-    gb2 forever alone
-    >mfw false;
-}
+>implying foo isn't >function(x) {
+     x TIER: {
+         >mfw ""true"";
+         >forever alone.jpg
+     } 100% accurate
+
+     >mfw ""false"";
+     gb2 -1
+ }
+
+>foo true;
 
 ";
 
