@@ -230,9 +230,12 @@ namespace GPL
 
         // Expressions
         static Parser<IExpression> Expression = Tiers.Or(explim).Token();
+        static Parser<IExpression> expfun = FunctionParser.Or<IExpression>(BlockParser).Or(Tiers).Or(ImplicationParser).Or(Variable).Token();
 
         // Entire source file
-        static Parser<Block> SourceFile = from be in Expression.Many().End()
+        static Parser<Block> SourceFile = from lead in space
+                                          from be in Expression.Many().End()
+                                          from trail in space
                                           select new Block(be);
     }
 }

@@ -43,4 +43,4 @@ tier list = tier , { tier } , "100% accurate" ;
 tier = condition , "TIER:" , expression ;
 condition = [ whitespace ] , limited expression , [ whitespace ] ;
 
-source file = block contents ;
+source file = [white] , block contents , [white] ;
