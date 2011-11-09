@@ -26,8 +26,8 @@ declaration = ">implying" , name ;
 creation = declaration , "isn't" , expression ;
 assignment = declaration , "wasn't" , expression ;
 
-function creation = ">function" , function names , expression ;
-function names = "" | "(" , { name } , ")" ;
+function creation = ">function" , [ function names ] , expression ;
+function names = "(" , { name } , ")" ;
 function application = ">" , function expression , { expression } , ";" ;
 
 block = "{" , block contents , "}" ;
